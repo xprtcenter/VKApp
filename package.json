@@ -2,7 +2,7 @@
   "name": "complete-react-course",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://xprtcenter.github.io/",
+  "homepage": "https://xprtcenter.github.io/VKApp",
   "dependencies": {
     "firebase": "^8.10.0",
     "gh-pages": "^3.2.3",
@@ -23,11 +23,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp build/index.html build/404.html", // this will prevent page reloads to give a  404 error
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,4 +39,5 @@
     "not ie <= 11",
     "not op_mini all"
   ]
+
 }
