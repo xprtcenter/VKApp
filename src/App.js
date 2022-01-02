@@ -79,7 +79,16 @@ class App extends Component {
 							}
 						/>
 
-						<Route path="/payroll" component={PayrollHomePage} />
+						<Route
+							path="/payroll"
+							render={() =>
+								this.props.currentUser ? (
+									<PayrollHomePage />
+								) : (
+									<Redirect to="/signin" />
+								)
+							}
+						/>
 						<Route
 							path="/checkout"
 							render={() =>
