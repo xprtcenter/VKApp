@@ -12,7 +12,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter basename={process.env.PUBLIC_URL} >
+		<BrowserRouter basename={process.env.PUBLIC_URL}>
 			<PersistGate persistor={persistor}>
 				<App />
 			</PersistGate>

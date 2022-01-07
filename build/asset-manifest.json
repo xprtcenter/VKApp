@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/VKApp/static/css/main.7b971683.chunk.css",
-    "main.js": "/VKApp/static/js/main.209b0fb4.chunk.js",
-    "main.js.map": "/VKApp/static/js/main.209b0fb4.chunk.js.map",
+    "main.js": "/VKApp/static/js/main.d8541e72.chunk.js",
+    "main.js.map": "/VKApp/static/js/main.d8541e72.chunk.js.map",
     "runtime-main.js": "/VKApp/static/js/runtime-main.e0a0c5a7.js",
     "runtime-main.js.map": "/VKApp/static/js/runtime-main.e0a0c5a7.js.map",
     "static/js/2.28c7c971.chunk.js": "/VKApp/static/js/2.28c7c971.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e0a0c5a7.js",
     "static/js/2.28c7c971.chunk.js",
     "static/css/main.7b971683.chunk.css",
-    "static/js/main.209b0fb4.chunk.js"
+    "static/js/main.d8541e72.chunk.js"
   ]
 }

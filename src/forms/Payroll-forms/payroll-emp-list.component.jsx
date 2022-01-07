@@ -66,14 +66,14 @@ class PayrollEmpList extends React.Component {
 			<table className="table-page">
 				<thead>
 					<tr className="table-header">
-						<th>Employee Code</th>
-						<th>Employee Image</th>
-						<th>Employee Name</th>
-						<th>Email</th>
-						<th>Company Name</th>
-						<th>Address</th>
-						<th>Contact</th>
-						<th>Action</th>
+						<th className="th1">Employee Code</th>
+						<th className="th2">Employee Image</th>
+						<th className="th3">Employee Name</th>
+						<th className="th4">Email</th>
+						<th className="th5">Company Name</th>
+						<th className="th6">Address</th>
+						<th className="th7">Contact</th>
+						<th className="th8">Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -92,10 +92,13 @@ class PayrollEmpList extends React.Component {
 							<td>{item.EmployeeAddress}</td>
 							<td>{item.EmployeeContact}</td>
 							<td>
-								<Link to={`/payroll/PayrollEmpRegMaster/${item.id}`}>
-									<button className="button-edit">Edit</button>
+								<Link to={`/payroll/PayrollEmpRegEmployeeDetails/${item.id}`}>
+									<button className="btn btn-view">View</button>
 								</Link>
-								<button className="button-delete">Delete</button>
+								<Link to={`/payroll/PayrollEmpRegMaster/${item.id}`}>
+									<button className="btn btn-edit">Edit</button>
+								</Link>
+								<button className="btn btn-delete">Delete</button>
 							</td>
 						</tr>
 					))}
