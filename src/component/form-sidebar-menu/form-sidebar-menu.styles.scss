@@ -1,13 +1,31 @@
 .leftside-menu-block {
-	.list {
-		display: block;
-		padding-left: 10px;
-		margin: 5px 0 5px;
-		list-style: none;
+	.sidebar-menu {
+		padding: 5px 0 5px 15px;
 		cursor: pointer;
+		background-color: rgb(39, 37, 37);
+
 		&:hover {
 			background-color: var(--primary-color);
+			transition: background-color 0.5s;
 			color: black;
+		}
+		.icon-container {
+			padding: 0 5px;
+		}
+		.side-menu-text {
+			white-space: nowrap;
+			font-size: calc(0.5em + 1vh);
+		}
+		.close {
+			display: none;
+		}
+		.form-side-list {
+			margin: 5px 0 5px;
+			display: block;
+			color: var(--primary-color-m);
+			&:hover {
+				color: black;
+			}
 		}
 	}
 }

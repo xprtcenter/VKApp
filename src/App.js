@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -50,9 +50,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="main-container">
-				<header>
-					<Header />
-				</header>
+				<Header />
 				<div className="page-container">
 					<Switch>
 						<Route exact path="/" component={HomePage} />

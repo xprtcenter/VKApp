@@ -7,57 +7,63 @@ import logo from "../../assets/swami2.png";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import HeaderModules from "../header-module/header-module.component";
 import avtar from "../../assets/avatar.png";
+import Menubutton from "../../assets/menubutton.png";
 
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectMenuHidden } from "../../redux/menu/menu.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { toggleMenuHidden } from "../../redux/menu/menu.action";
 import HeaderDateTime from "./Timer.component";
 
 import { auth } from "../../firebase/firebase.utils";
 import "./header.styles.scss";
 
-const Header = ({ currentUser, hidden }) => {
+const Header = ({ currentUser, hidden, menuhidden, toggleMenuHidden }) => {
 	//console.log("Test CurrentUser from header", currentUser.photoURL);
 	return (
 		<div className="main-header">
 			<div className="header1">
-				<h4>VIVEKANANDA KENDRA BORL HOSPITAL</h4>
-				<h4>
-					<HeaderDateTime />
-				</h4>
+				<p>VIVEKANANDA KENDRA BORL HOSPITAL</p>
+				<HeaderDateTime />
 			</div>
 			<div className="header">
-				<Link to="/">
-					<div className="logo-container">
-						<img src={logo} alt="swamiji" />
+				<Link to="/" className="logo-container">
+					<img src={logo} alt="swamiji" />
 
-						<span className="text">HOME</span>
-					</div>
+					<span className="text">HOME</span>
 				</Link>
-				<div className="nav-options .nav__menu">
-					{currentUser ? <HeaderModules /> : null}
+				<div className="nav-options-container .nav__menu">
+					{menuhidden ? null : (
+						<div className="header-menu">
+							<HeaderModules />
+						</div>
+					)}
+					<div className="menu-button-icon" onClick={toggleMenuHidden}>
+						<img src={Menubutton} alt="menubutton" />
+					</div>
 
 					{currentUser ? (
-						<div className="nav-option menu-item-dropdown">
-							<span>
-								{auth.currentUser.photoURL !== null ? (
-									<img
-										className="avatar"
-										src={auth.currentUser.photoURL}
-										alt="avatar"
-									/>
-								) : (
-									<img className="avatar" src={avtar} alt="avatar" />
-								)}
+						<div className="user-info-container menu-item-dropdown">
+							{auth.currentUser.photoURL !== null ? (
+								<img
+									className="avatar"
+									src={auth.currentUser.photoURL}
+									alt="avatar"
+								/>
+							) : (
+								<img className="avatar" src={avtar} alt="avatar" />
+							)}
 
-								{auth.currentUser.email}
-							</span>
+							<span className="text">{auth.currentUser.email}</span>
+
 							<Submenu />
 						</div>
 					) : (
-						<Link className="nav-option" to="/signin">
+						<Link className="sign-in" to="/signin">
 							SIGN IN
 						</Link>
 					)}
+
 					<CartIcon />
 				</div>
 				{hidden ? null : <CartDropdown />}
@@ -92,10 +98,13 @@ class Submenu extends React.Component {
 		);
 	}
 }
-
+const mapDispatchToProps = (dispatch) => ({
+	toggleMenuHidden: () => dispatch(toggleMenuHidden()),
+});
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
 	hidden: selectCartHidden,
+	menuhidden: selectMenuHidden,
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

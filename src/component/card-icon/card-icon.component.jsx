@@ -2,14 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
-import { ReactComponent as ShoppingIcon } from "../../assets/notification-2-line.svg";
-import { toggleCartHidden } from "../../redux/cart/cart.action";
 
+import { IoNotificationsSharp } from "react-icons/io5";
+
+import { toggleCartHidden } from "../../redux/cart/cart.action";
 import "./card-icon.styles.scss";
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => (
 	<div className="cart-icon" onClick={toggleCartHidden}>
-		<ShoppingIcon className="shopping-icon" />
+		<IoNotificationsSharp className="shopping-icon" />
 		<span className="item-count">{itemCount}</span>
 	</div>
 );

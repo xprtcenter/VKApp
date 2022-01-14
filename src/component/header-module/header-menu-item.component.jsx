@@ -10,8 +10,6 @@ const HeaderMenuItem = ({
 	handleForUpdate,
 	ActiveModule,
 }) => {
-	console.log("Location Test", linkUrl);
-
 	return (
 		<div
 			className={
@@ -24,7 +22,7 @@ const HeaderMenuItem = ({
 				handleForUpdate(linkUrl);
 			}}
 		>
-			{title}
+			<span>{title}</span>
 		</div>
 	);
 };

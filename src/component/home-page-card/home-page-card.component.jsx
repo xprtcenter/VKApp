@@ -4,12 +4,12 @@ import "./home-page-card.styles.scss";
 const CustomHomeCard = ({ data }) => (
 	<div className="card-box">
 		<div className="cards">
-			{data.map((item) => (
-				<div className="card">
+			{data.map((item, index) => (
+				<div className="card" key={index}>
 					<div className="card-content">
 						<p>{item.value}</p>
 					</div>
-					<cardfooter>{item.label}</cardfooter>
+					<div className="cardfooter">{item.label}</div>
 				</div>
 			))}
 		</div>

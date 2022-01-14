@@ -1,31 +1,32 @@
 .cart-icon {
-	width: 45px;
-	height: 45px;
+	/* width: 2vw;
+	height: 2vw; */
 	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	cursor: pointer;
+	padding: 0 1vw;
 
 	.shopping-icon {
-		width: 24px;
-		height: 24px;
+		width: 2vw;
+		height: 2vw;
+		color: rgb(0, 0, 0);
 	}
 
 	.item-count {
 		position: absolute;
-		font-size: 10px;
-		font-weight: bold;
-		bottom: 15px;
+		color: rgb(255, 255, 255);
+		font-size: 1rem;
+		margin-left: 0.7vw;
 	}
 
 	&:hover {
 		.shopping-icon {
-			width: 34px;
-			height: 34px;
+			width: 2.2vw;
+			height: 2.2vw;
 		}
 		.item-count {
-			font-size: 15px;
+			font-size: 1.2rem;
 		}
 	}
 }

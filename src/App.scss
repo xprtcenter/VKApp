@@ -1,0 +1,54 @@
+.main-container {
+	display: flex;
+	flex-direction: column;
+	.main-header {
+		/* background-color: var(--header-background-color); */
+
+		display: flex;
+		flex-direction: column;
+		position: sticky;
+		z-index: 5;
+		top: 0;
+		background-color: var(--header-background-color);
+		width: 100vw;
+		/* overflow: hidden; */
+	}
+	.page-container {
+		background-color: rgb(248, 244, 244);
+		width: 100vw;
+		z-index: 2;
+	}
+	.footer {
+		position: fixed;
+		bottom: 0;
+		z-index: 4;
+		width: 100vw;
+		background-color: rgb(241, 241, 241);
+		color: rgb(82, 82, 82);
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	/*Tablets [601px -> 1200px]*/
+	body {
+		background-color: rgb(253, 253, 253);
+	}
+}
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+	width: 5px;
+}
+/*
+::-webkit-scrollbar-track {
+	background-color: #e0f00b;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: #0a0a0a;
+	
+} */
