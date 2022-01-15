@@ -8,16 +8,17 @@
 	padding: 0 1vw;
 
 	.shopping-icon {
-		width: 2vw;
-		height: 2vw;
+		width: 9vw;
+		height: 9vw;
 		color: rgb(0, 0, 0);
 	}
 
 	.item-count {
 		position: absolute;
 		color: rgb(255, 255, 255);
-		font-size: 1rem;
-		margin-left: 0.7vw;
+		font-size: 3.5rem;
+		margin-left: 3.5vw;
+		font-weight: bold;
 	}
 
 	&:hover {
