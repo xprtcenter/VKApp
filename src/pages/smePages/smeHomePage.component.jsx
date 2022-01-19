@@ -11,14 +11,12 @@ class SmeHomePage extends React.Component {
 	render() {
 		const { history, match, location } = this.props;
 		return (
-			<>
-				<FormPage
-					data={this.state.smeMenu}
-					history={history}
-					match={match}
-					location={location}
-				/>
-			</>
+			<FormPage
+				data={this.state.smeMenu}
+				history={history}
+				match={match}
+				location={location}
+			/>
 		);
 	}
 }

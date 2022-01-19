@@ -227,7 +227,9 @@ const PayrollDeductionEntry = () => {
 	return (
 		<div className="form-main-container">
 			<h2 className="title">Deduction Entry form</h2>
-			<span>Enter your deduction details.</span>
+			<span>
+				Select month/year/Employee for enter Addition Deduction Value .
+			</span>
 
 			<form className="form-container" onSubmit={handleSubmit}>
 				<div className="selection-container">

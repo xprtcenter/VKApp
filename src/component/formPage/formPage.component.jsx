@@ -5,15 +5,23 @@ import { connect } from "react-redux";
 import { ReactComponent as SidebarClosebutton } from "../../assets/arrow-right.svg";
 import { sideMenuHide } from "../../redux/menu/menu.action";
 import RightFormPageContainer from "../../component/formPage/right-form-page.component";
+import { createStructuredSelector } from "reselect";
 
-const FormPage = ({ data, match, sideMenuHide }) => {
+import { selectSideHide } from "../../redux/menu/menu.selectors";
+
+const FormPage = ({ data, match, sideMenuHide, sidehide }) => {
 	return (
 		<div className="form-page">
 			<div className="leftside-menu-block open">
 				{data.map(({ id, ...otherProps }) => (
 					<FormSidebarMenu key={id} {...otherProps} />
 				))}
-				<div className="sidebar-close-button" onClick={sideMenuHide}>
+				<div
+					className={
+						sidehide ? "sidebar-close-button" : "sidebar-close-button close"
+					}
+					onClick={sideMenuHide}
+				>
 					<SidebarClosebutton className="right-button" />
 				</div>
 			</div>
@@ -23,8 +31,10 @@ const FormPage = ({ data, match, sideMenuHide }) => {
 		</div>
 	);
 };
-
+const mapStateToProps = createStructuredSelector({
+	sidehide: selectSideHide,
+});
 const mapDispatchToProps = (dispatch) => ({
 	sideMenuHide: () => dispatch(sideMenuHide()),
 });
-export default connect(null, mapDispatchToProps)(FormPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FormPage);

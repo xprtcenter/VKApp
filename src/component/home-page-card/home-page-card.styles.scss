@@ -2,28 +2,32 @@
 	display: flex;
 	text-align: center;
 	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .card {
-	width: 8em;
+	width: 8rem;
 	background-image: linear-gradient(135deg, #feb692 10%, #ea5455 100%);
-	margin: 1em;
+	margin: 1rem;
 	display: flex;
 	flex-direction: column;
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 20px 20px 0 0;
 	.card-content {
 		flex: 1 1 auto;
-		font-size: 3em;
+		font-size: 3rem;
 
 		p {
-			margin-top: 0.5em;
-			margin-bottom: 0.5em;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
 		}
 	}
 	.cardfooter {
-		background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
-		color: rgb(139, 0, 0);
-		font-size: 1em;
+		/* 		background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
+ */
+		background-image: linear-gradient(135deg, #3c8ce7 10%, #00eaff 100%);
+		color: rgb(0, 0, 0);
+		font-size: 1rem;
+		font-weight: bold;
 	}
 }

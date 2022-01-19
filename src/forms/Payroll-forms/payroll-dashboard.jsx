@@ -4,7 +4,7 @@ import { payrollDashboardOption } from "./payroll-dashboard-data";
 const PayrollDashboardPage = () => {
 	return (
 		<>
-			<h1>Payroll Dashboard</h1>
+			<h1 className="title">Payroll Dashboard</h1>
 
 			<CustomHomeCard data={payrollDashboardOption.name} />
 		</>

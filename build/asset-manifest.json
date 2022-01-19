@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/VKApp/static/css/main.d2e1e2b3.chunk.css",
-    "main.js": "/VKApp/static/js/main.a2224bb4.chunk.js",
-    "main.js.map": "/VKApp/static/js/main.a2224bb4.chunk.js.map",
+    "main.css": "/VKApp/static/css/main.5fbfb8af.chunk.css",
+    "main.js": "/VKApp/static/js/main.ea63027b.chunk.js",
+    "main.js.map": "/VKApp/static/js/main.ea63027b.chunk.js.map",
     "runtime-main.js": "/VKApp/static/js/runtime-main.e0a0c5a7.js",
     "runtime-main.js.map": "/VKApp/static/js/runtime-main.e0a0c5a7.js.map",
-    "static/js/2.a4fca181.chunk.js": "/VKApp/static/js/2.a4fca181.chunk.js",
-    "static/js/2.a4fca181.chunk.js.map": "/VKApp/static/js/2.a4fca181.chunk.js.map",
+    "static/js/2.78c4a919.chunk.js": "/VKApp/static/js/2.78c4a919.chunk.js",
+    "static/js/2.78c4a919.chunk.js.map": "/VKApp/static/js/2.78c4a919.chunk.js.map",
     "index.html": "/VKApp/index.html",
-    "static/css/main.d2e1e2b3.chunk.css.map": "/VKApp/static/css/main.d2e1e2b3.chunk.css.map",
-    "static/js/2.a4fca181.chunk.js.LICENSE.txt": "/VKApp/static/js/2.a4fca181.chunk.js.LICENSE.txt",
+    "static/css/main.5fbfb8af.chunk.css.map": "/VKApp/static/css/main.5fbfb8af.chunk.css.map",
+    "static/js/2.78c4a919.chunk.js.LICENSE.txt": "/VKApp/static/js/2.78c4a919.chunk.js.LICENSE.txt",
     "static/media/arrow-right.9b84dde7.svg": "/VKApp/static/media/arrow-right.9b84dde7.svg",
     "static/media/swami2.808446dc.png": "/VKApp/static/media/swami2.808446dc.png"
   },
   "entrypoints": [
     "static/js/runtime-main.e0a0c5a7.js",
-    "static/js/2.a4fca181.chunk.js",
-    "static/css/main.d2e1e2b3.chunk.css",
-    "static/js/main.a2224bb4.chunk.js"
+    "static/js/2.78c4a919.chunk.js",
+    "static/css/main.5fbfb8af.chunk.css",
+    "static/js/main.ea63027b.chunk.js"
   ]
 }

@@ -24,7 +24,7 @@ class PayrollEmpList extends React.Component {
 			.collection("payrollEmployee");
 
 		this.unsubscribe = db
-			.orderBy("PayrollCompanyName", "asc")
+			.orderBy("EmployeeName", "asc")
 			.onSnapshot(this.onDataChange);
 	}
 
@@ -63,47 +63,52 @@ class PayrollEmpList extends React.Component {
 			"https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png";
 		console.log(mydata.EmployeeImgUrl);
 		return (
-			<table className="table-page">
-				<thead>
-					<tr className="table-header">
-						<th className="th1">Employee Code</th>
-						<th className="th2">Employee Image</th>
-						<th className="th3">Employee Name</th>
-						<th className="th4">Email</th>
-						<th className="th5">Company Name</th>
-						<th className="th6">Address</th>
-						<th className="th7">Contact</th>
-						<th className="th8">Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					{mydata.map((item) => (
-						<tr className="table-data-row">
-							<td className="emp-code">{item.EmployeeCode}</td>
-							<td className="table-image-container">
-								<img
-									src={item.EmployeeImgUrl ? item.EmployeeImgUrl : defaultImage}
-									alt="dummyimg"
-								/>
-							</td>
-							<td>{item.EmployeeName}</td>
-							<td>{item.EmployeeEmail}</td>
-							<td>{item.PayrollCompanyName}</td>
-							<td>{item.EmployeeAddress}</td>
-							<td>{item.EmployeeContact}</td>
-							<td>
-								<Link to={`/payroll/PayrollEmpRegEmployeeDetails/${item.id}`}>
-									<button className="btn btn-view">View</button>
-								</Link>
-								<Link to={`/payroll/PayrollEmpRegMaster/${item.id}`}>
-									<button className="btn btn-edit">Edit</button>
-								</Link>
-								<button className="btn btn-delete">Delete</button>
-							</td>
+			<>
+				<h1>Employee List</h1>
+				<table className="table-page">
+					<thead>
+						<tr className="table-header">
+							<th className="th1">Employee Code</th>
+							<th className="th2">Employee Image</th>
+							<th className="th3">Employee Name</th>
+							<th className="th4">Email</th>
+							<th className="th5">Company Name</th>
+							<th className="th6">Address</th>
+							<th className="th7">Contact</th>
+							<th className="th8">Action</th>
 						</tr>
-					))}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{mydata.map((item) => (
+							<tr className="table-data-row">
+								<td className="emp-code">{item.EmployeeCode}</td>
+								<td className="table-image-container">
+									<img
+										src={
+											item.EmployeeImgUrl ? item.EmployeeImgUrl : defaultImage
+										}
+										alt="dummyimg"
+									/>
+								</td>
+								<td>{item.EmployeeName}</td>
+								<td>{item.EmployeeEmail}</td>
+								<td>{item.PayrollCompanyName}</td>
+								<td>{item.EmployeeAddress}</td>
+								<td>{item.EmployeeContact}</td>
+								<td>
+									<Link to={`/payroll/PayrollEmpRegEmployeeDetails/${item.id}`}>
+										<button className="btn btn-view">View</button>
+									</Link>
+									<Link to={`/payroll/PayrollEmpRegMaster/${item.id}`}>
+										<button className="btn btn-edit">Edit</button>
+									</Link>
+									<button className="btn btn-delete">Delete</button>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</>
 		);
 	}
 }

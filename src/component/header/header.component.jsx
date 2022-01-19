@@ -23,7 +23,7 @@ const Header = ({ currentUser, hidden, menuhidden, toggleMenuHidden }) => {
 	return (
 		<div className="main-header">
 			<div className="header1">
-				<p className="header1-text">VIVEKANANDA KENDRA BORL HOSPITAL</p>
+				<p>VIVEKANANDA KENDRA BORL HOSPITAL</p>
 				<HeaderDateTime />
 			</div>
 			<div className="header">

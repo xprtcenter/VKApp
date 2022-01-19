@@ -14,6 +14,6 @@ export default class HeaderDateTime extends Component {
 	state = { curTime: new Date().toLocaleString("en-GB", { timeZone: "IST" }) };
 
 	render() {
-		return <p className="header1-text">{this.state.curTime}</p>;
+		return <p>{this.state.curTime}</p>;
 	}
 }

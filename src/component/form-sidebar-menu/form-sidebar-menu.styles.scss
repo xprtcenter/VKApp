@@ -1,6 +1,7 @@
 .leftside-menu-block {
 	.sidebar-menu {
-		padding: 5px 0 5px 15px;
+		/* 		padding: 5px 0 5px 15px; */
+
 		cursor: pointer;
 		background-color: rgb(39, 37, 37);
 
@@ -15,17 +16,43 @@
 		.side-menu-text {
 			white-space: nowrap;
 			font-size: calc(0.5em + 1vh);
+			margin-right: 0.8em;
 		}
 		.close {
 			display: none;
 		}
 		.form-side-list {
-			margin: 5px 0 5px;
-			display: block;
+			/* 			margin: 5px 0 5px;*/
+			display: flex;
 			color: var(--primary-color-m);
+			align-items: center;
 			&:hover {
 				color: black;
 			}
+			.icon-container {
+				svg {
+					width: 2em;
+					height: 2em;
+					margin: 0.3em 0.3em;
+				}
+			}
+		}
+	}
+	.sidebar-close-button {
+		cursor: pointer;
+		position: fixed;
+		bottom: 5vh;
+		.right-button {
+			height: 3em;
+			width: 3em;
+			background-color: honeydew;
+			border-radius: 50%;
+			transform: rotate(180deg);
+		}
+	}
+	.close {
+		.right-button {
+			transform: rotate(1800deg);
 		}
 	}
 }
