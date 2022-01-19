@@ -225,326 +225,325 @@ const PayrollDeductionEntry = () => {
 		TabtoggleState,
 	} = dedData;
 	return (
-		<div className="form-main-container">
+		<form className="form-container" onSubmit={handleSubmit}>
 			<h2 className="title">Deduction Entry form</h2>
 			<span>
 				Select month/year/Employee for enter Addition Deduction Value .
 			</span>
-
-			<form className="form-container" onSubmit={handleSubmit}>
-				<div className="selection-container">
-					<div className="selection-menu">
-						<Select
-							className="dropdown-menu"
-							placeholder="Month for Deduction"
-							value={months.find((obj) => obj.value === month) || ""} // set selected value
-							options={months} // set list of the data
-							onChange={(e) => {
-								setDedData({ ...dedData, month: e.value });
-							}} // assign onChange function
-						/>
-						<Select
-							className="dropdown-menu"
-							placeholder="Year for Deduction"
-							value={years.find((obj) => obj.value === year) || ""} // set selected value
-							options={years} // set list of the data
-							onChange={(e) => {
-								setDedData({ ...dedData, year: e.value });
-							}} // assign onChange function
-						/>
-						<Select
-							className="dropdown-menu"
-							placeholder="Select Employee"
-							value={
-								newOptions.EmployeeName.find(
-									(obj) => obj.label === EmployeeName,
-								) || ""
-							} // set selected value
-							options={newOptions.EmployeeName} // set list of the data
-							onChange={(e) => {
-								setDedData({
-									...dedData,
-									EmployeeName: e.label,
-									EmployeeId: e.value,
-									EmployeeCode: e.EmployeeCode,
-									EmployeeEmail: e.EmployeeEmail,
-									PayrollCompanyName: e.PayrollCompanyName,
-									EmployeeAddress: e.EmployeeAddress,
-									EmployeeContact: e.EmployeeContact,
-									EmployeeImgUrl: e.EmployeeImgUrl,
-									EmployeeDepartment: e.EmployeeDepartment,
-								});
-							}} // assign onChange function
-						/>
-					</div>
-
-					{EmployeeId !== "" ? (
-						<div className="card-for-image-text">
-							<div
-								className="header-image"
-								style={{
-									backgroundImage: `url(${EmployeeImgUrl})`,
-									backgroundPosition: "center",
-									backgroundSize: "cover",
-									backgroundRepeat: "no-repeat",
-								}}
-							></div>
-
-							<div className="card-for-header">
-								<div className="header-text">
-									Employee Id: <strong>{EmployeeCode}</strong>
-								</div>
-								<div className="header-text">
-									Employee Name: <strong>{EmployeeName}</strong>
-								</div>
-								<div className="header-text">
-									Employee Department: <strong>{EmployeeDepartment}</strong>
-								</div>
-								<div className="header-text">
-									Email: <strong>{EmployeeEmail}</strong>
-								</div>
-								<div className="header-text">
-									Contact:<strong> {EmployeeContact}</strong>
-								</div>
-							</div>
-						</div>
-					) : null}
+			<div className="selection-container">
+				<div className="selection-menu">
+					<Select
+						className="dropdown-menu"
+						placeholder="Month for Deduction"
+						value={months.find((obj) => obj.value === month) || ""} // set selected value
+						options={months} // set list of the data
+						onChange={(e) => {
+							setDedData({ ...dedData, month: e.value });
+						}} // assign onChange function
+					/>
+					<Select
+						className="dropdown-menu"
+						placeholder="Year for Deduction"
+						value={years.find((obj) => obj.value === year) || ""} // set selected value
+						options={years} // set list of the data
+						onChange={(e) => {
+							setDedData({ ...dedData, year: e.value });
+						}} // assign onChange function
+					/>
+					<Select
+						className="dropdown-menu"
+						placeholder="Select Employee"
+						value={
+							newOptions.EmployeeName.find(
+								(obj) => obj.label === EmployeeName,
+							) || ""
+						} // set selected value
+						options={newOptions.EmployeeName} // set list of the data
+						onChange={(e) => {
+							setDedData({
+								...dedData,
+								EmployeeName: e.label,
+								EmployeeId: e.value,
+								EmployeeCode: e.EmployeeCode,
+								EmployeeEmail: e.EmployeeEmail,
+								PayrollCompanyName: e.PayrollCompanyName,
+								EmployeeAddress: e.EmployeeAddress,
+								EmployeeContact: e.EmployeeContact,
+								EmployeeImgUrl: e.EmployeeImgUrl,
+								EmployeeDepartment: e.EmployeeDepartment,
+							});
+						}} // assign onChange function
+					/>
 				</div>
-				<div className="container">
-					<div className="bloc-tabs">
+
+				{EmployeeId !== "" ? (
+					<div className="card-for-image-text">
 						<div
-							className={TabtoggleState === 1 ? "tabs active-tabs" : "tabs"}
-							onClick={() => setDedData({ ...dedData, TabtoggleState: 1 })}
-						>
-							First Tab
-						</div>
-						<div
-							className={TabtoggleState === 2 ? "tabs active-tabs" : "tabs"}
-							onClick={() => setDedData({ ...dedData, TabtoggleState: 2 })}
-						>
-							Second Tab
-						</div>
-						<div
-							className={TabtoggleState === 3 ? "tabs active-tabs" : "tabs"}
-							onClick={() => setDedData({ ...dedData, TabtoggleState: 3 })}
-						>
-							Third Tab
+							className="header-image"
+							style={{
+								backgroundImage: `url(${EmployeeImgUrl})`,
+								backgroundPosition: "center",
+								backgroundSize: "cover",
+								backgroundRepeat: "no-repeat",
+							}}
+						></div>
+
+						<div className="card-for-header">
+							<div className="header-text">
+								Employee Id: <strong>{EmployeeCode}</strong>
+							</div>
+							<div className="header-text">
+								Employee Name: <strong>{EmployeeName}</strong>
+							</div>
+							<div className="header-text">
+								Employee Department: <strong>{EmployeeDepartment}</strong>
+							</div>
+							<div className="header-text">
+								Email: <strong>{EmployeeEmail}</strong>
+							</div>
+							<div className="header-text">
+								Contact:<strong> {EmployeeContact}</strong>
+							</div>
 						</div>
 					</div>
-					<div className="content-tabs">
-						<div
-							className={
-								TabtoggleState === 1 ? "content  active-content" : "content"
-							}
-						>
-							<div className="form-container">
-								<FormInput
-									type="text"
-									name="fixBasic"
-									value={fixBasic}
-									onChange={handleChange}
-									label="FIXBASIC"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="days"
-									value={days}
-									onChange={handleChange}
-									label="DAYS"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="weeklyoff"
-									value={weeklyoff}
-									onChange={handleChange}
-									label="WEEKLY OFF"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="coff"
-									value={coff}
-									onChange={handleChange}
-									label="C OFF"
-									required
-								/>
-							</div>
+				) : null}
+			</div>
+			<div className="container">
+				<div className="bloc-tabs">
+					<div
+						className={TabtoggleState === 1 ? "tabs active-tabs" : "tabs"}
+						onClick={() => setDedData({ ...dedData, TabtoggleState: 1 })}
+					>
+						First Tab
+					</div>
+					<div
+						className={TabtoggleState === 2 ? "tabs active-tabs" : "tabs"}
+						onClick={() => setDedData({ ...dedData, TabtoggleState: 2 })}
+					>
+						Second Tab
+					</div>
+					<div
+						className={TabtoggleState === 3 ? "tabs active-tabs" : "tabs"}
+						onClick={() => setDedData({ ...dedData, TabtoggleState: 3 })}
+					>
+						Third Tab
+					</div>
+				</div>
+				<div className="content-tabs">
+					<div
+						className={
+							TabtoggleState === 1 ? "content  active-content" : "content"
+						}
+					>
+						<div className="tab-container">
+							<FormInput
+								type="text"
+								name="fixBasic"
+								value={fixBasic}
+								onChange={handleChange}
+								label="FIXBASIC"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="days"
+								value={days}
+								onChange={handleChange}
+								label="DAYS"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="weeklyoff"
+								value={weeklyoff}
+								onChange={handleChange}
+								label="WEEKLY OFF"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="coff"
+								value={coff}
+								onChange={handleChange}
+								label="C OFF"
+								required
+							/>
 						</div>
-						<div
-							className={
-								TabtoggleState === 2 ? "content  active-content" : "content"
-							}
-						>
-							<div className="form-container">
-								<FormInput
-									type="text"
-									name="unpaidLeave"
-									value={unpaidLeave}
-									onChange={handleChange}
-									label="UN PAID LEAVE"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="paidLeave"
-									value={paidLeave}
-									onChange={handleChange}
-									label="PAID LEAVE"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="nonWorkingdays"
-									value={nonWorkingdays}
-									onChange={handleChange}
-									label="NON WORKING DAYS"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="totalLeave"
-									value={totalLeave}
-									onChange={handleChange}
-									label="TOTAL LEAVE"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="workingDays"
-									value={workingDays}
-									onChange={handleChange}
-									label="WORKING DAYS"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="leaveDeduction"
-									value={leaveDeduction}
-									onChange={handleChange}
-									label="LEAVE DEDUCTION"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="esicEmployee"
-									value={esicEmployee}
-									onChange={handleChange}
-									label="ESIC EMPLOYEE"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="esicEmployer"
-									value={esicEmployer}
-									onChange={handleChange}
-									label="ESIC EMPLOYER"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="pfEmployee"
-									value={pfEmployee}
-									onChange={handleChange}
-									label="PF EMPLOYEE"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="pfEmployer"
-									value={pfEmployer}
-									onChange={handleChange}
-									label="PF EMPLOYER"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="professionalTax"
-									value={professionalTax}
-									onChange={handleChange}
-									label="PROFESSIONAL TAX"
-									required
-								/>
-							</div>
+					</div>
+					<div
+						className={
+							TabtoggleState === 2 ? "content  active-content" : "content"
+						}
+					>
+						<div className="tab-container">
+							<FormInput
+								type="text"
+								name="unpaidLeave"
+								value={unpaidLeave}
+								onChange={handleChange}
+								label="UN PAID LEAVE"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="paidLeave"
+								value={paidLeave}
+								onChange={handleChange}
+								label="PAID LEAVE"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="nonWorkingdays"
+								value={nonWorkingdays}
+								onChange={handleChange}
+								label="NON WORKING DAYS"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="totalLeave"
+								value={totalLeave}
+								onChange={handleChange}
+								label="TOTAL LEAVE"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="workingDays"
+								value={workingDays}
+								onChange={handleChange}
+								label="WORKING DAYS"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="leaveDeduction"
+								value={leaveDeduction}
+								onChange={handleChange}
+								label="LEAVE DEDUCTION"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="esicEmployee"
+								value={esicEmployee}
+								onChange={handleChange}
+								label="ESIC EMPLOYEE"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="esicEmployer"
+								value={esicEmployer}
+								onChange={handleChange}
+								label="ESIC EMPLOYER"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="pfEmployee"
+								value={pfEmployee}
+								onChange={handleChange}
+								label="PF EMPLOYEE"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="pfEmployer"
+								value={pfEmployer}
+								onChange={handleChange}
+								label="PF EMPLOYER"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="professionalTax"
+								value={professionalTax}
+								onChange={handleChange}
+								label="PROFESSIONAL TAX"
+								required
+							/>
 						</div>
-						<div
-							className={
-								TabtoggleState === 3 ? "content  active-content" : "content"
-							}
-						>
-							<div className="form-container">
-								<FormInput
-									type="text"
-									name="advanceLoan"
-									value={advanceLoan}
-									onChange={handleChange}
-									label="ADVANCE LOAN"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="vehicleAllownces"
-									value={vehicleAllownces}
-									onChange={handleChange}
-									label="VEHICLE ALLOWNCES"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="houseAllownces"
-									value={houseAllownces}
-									onChange={handleChange}
-									label="HOUSE ALLOWNCES"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="totalDeduction"
-									value={totalDeduction}
-									onChange={handleChange}
-									label="TOTAL DEDUCTION"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="calculativeBasic"
-									value={calculativeBasic}
-									onChange={handleChange}
-									label="CALCULATIVE BASIC"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="allowncesOther"
-									value={allowncesOther}
-									onChange={handleChange}
-									label="ALLOWNCES OTHER"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="inHandSalary"
-									value={inHandSalary}
-									onChange={handleChange}
-									label="FINAL SALARY"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="ctc"
-									value={ctc}
-									onChange={handleChange}
-									label="CTC"
-									required
-								/>
-							</div>
+					</div>
+					<div
+						className={
+							TabtoggleState === 3 ? "content  active-content" : "content"
+						}
+					>
+						<div className="tab-container">
+							<FormInput
+								type="text"
+								name="advanceLoan"
+								value={advanceLoan}
+								onChange={handleChange}
+								label="ADVANCE LOAN"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="vehicleAllownces"
+								value={vehicleAllownces}
+								onChange={handleChange}
+								label="VEHICLE ALLOWNCES"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="houseAllownces"
+								value={houseAllownces}
+								onChange={handleChange}
+								label="HOUSE ALLOWNCES"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="totalDeduction"
+								value={totalDeduction}
+								onChange={handleChange}
+								label="TOTAL DEDUCTION"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="calculativeBasic"
+								value={calculativeBasic}
+								onChange={handleChange}
+								label="CALCULATIVE BASIC"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="allowncesOther"
+								value={allowncesOther}
+								onChange={handleChange}
+								label="ALLOWNCES OTHER"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="inHandSalary"
+								value={inHandSalary}
+								onChange={handleChange}
+								label="FINAL SALARY"
+								required
+							/>
+							<FormInput
+								type="text"
+								name="ctc"
+								value={ctc}
+								onChange={handleChange}
+								label="CTC"
+								required
+							/>
 						</div>
 					</div>
 				</div>
-				<CustomButton type="submit">SUBMIT</CustomButton>
-			</form>
-		</div>
+			</div>
+			<CustomButton type="submit" sizefix>
+				SUBMIT
+			</CustomButton>
+		</form>
 	);
 };
 export default PayrollDeductionEntry;

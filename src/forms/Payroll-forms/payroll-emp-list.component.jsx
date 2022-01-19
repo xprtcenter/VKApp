@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./list-table.style.scss";
-import "./payroll-employee-registration.styles.scss";
+import "../../component/table/list-table.style.scss";
 
 import { firestore } from "../../firebase/firebase.utils";
 

@@ -17,8 +17,9 @@
 		flex: 1 1 auto;
 		display: flex;
 		align-items: center;
-		background-color: rgb(230, 230, 230);
 		flex-direction: column;
+
+		background-color: rgb(230, 230, 230);
 		padding: 0 2rem;
 		.title {
 			padding: 1rem 0;
@@ -28,6 +29,7 @@
 		.form-container {
 			display: flex;
 			flex-direction: column;
+			width: 80vw;
 			.bloc-tabs {
 				display: flex;
 				background: #ffffff;
@@ -64,7 +66,7 @@
 					display: none;
 					flex-direction: column;
 					/* height: 80vh; */
-					width: 80vw;
+					/* width: 80vw; */
 					.tab-title {
 						align-self: center;
 					}
@@ -73,8 +75,10 @@
 						flex-direction: column;
 						flex-wrap: wrap;
 						height: 60vh;
+						align-content: flex-start;
 						.form-dropdown {
-							width: 20rem;
+							width: 18rem;
+							margin: 0.5rem 0;
 						}
 					}
 					.image-form-page {
@@ -89,6 +93,7 @@
 							input {
 								background-color: chocolate;
 								color: cornsilk;
+								font-size: 0.7rem;
 							}
 							.imgPreview {
 								align-content: center;
@@ -136,14 +141,16 @@
 				align-self: center;
 				padding: 5px;
 				color: rgb(0, 0, 0);
-				width: 100%;
+				width: 60%;
 				margin: 5px;
-				border-radius: 20px;
+				border-radius: 0.5rem;
 				text-align: center;
-				align-items: center;
-				background-color: rgb(251, 197, 49);
+				font-size: 0.8rem;
+				background-color: var(--primary-color);
 				cursor: pointer;
-				font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+				/* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
+				font-weight: bold;
+				box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 			}
 		}
 	}
