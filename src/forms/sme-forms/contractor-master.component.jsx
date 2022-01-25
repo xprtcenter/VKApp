@@ -1,7 +1,7 @@
 import React from "react";
 import FormInput from "../../component/form-input/form-input.component";
 import CustomButton from "../../component/custom-button/custom-button.component";
-import SMEDataService from "./sme.service";
+
 import { firestore } from "../../firebase/firebase.utils";
 
 class ContractorMaster extends React.Component {

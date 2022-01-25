@@ -1,4 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { createStructuredSelector } from "reselect";
+import { activeHeaderButton } from "../../redux/menu/menu.action";
+import { selectActiveHeader } from "../../redux/menu/menu.selectors";
 
 import { withRouter } from "react-router-dom";
 
@@ -7,19 +12,19 @@ const HeaderMenuItem = ({
 	linkUrl,
 	history,
 	match,
-	handleForUpdate,
-	ActiveModule,
+	activeHeaderButton,
+	activeheader,
 }) => {
 	return (
 		<div
 			className={
-				ActiveModule.toLowerCase() === linkUrl.toLowerCase()
-					? "nav-option active"
+				activeheader.toLowerCase() === linkUrl.toLowerCase()
+					? "nav-option active-header-button"
 					: "nav-option"
 			}
 			onClick={() => {
 				history.push(`${match.url}${linkUrl}`);
-				handleForUpdate(linkUrl);
+				activeHeaderButton(linkUrl);
 			}}
 		>
 			<span>{title}</span>
@@ -27,4 +32,13 @@ const HeaderMenuItem = ({
 	);
 };
 
-export default withRouter(HeaderMenuItem);
+const mapStateToProps = createStructuredSelector({
+	activeheader: selectActiveHeader,
+});
+const mapDispatchToProps = (dispatch) => ({
+	activeHeaderButton: (url) => dispatch(activeHeaderButton(url)),
+});
+
+export default withRouter(
+	connect(mapStateToProps, mapDispatchToProps)(HeaderMenuItem),
+);

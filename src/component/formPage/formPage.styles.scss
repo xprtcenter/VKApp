@@ -21,6 +21,8 @@
 
 		background-color: rgb(230, 230, 230);
 		padding: 0 2rem;
+		margin-bottom: 2.5vw;
+
 		.title {
 			padding: 1rem 0;
 			display: flex;
@@ -30,6 +32,7 @@
 			display: flex;
 			flex-direction: column;
 			width: 80vw;
+
 			.bloc-tabs {
 				display: flex;
 				background: #ffffff;
@@ -70,46 +73,6 @@
 					.tab-title {
 						align-self: center;
 					}
-					.tab-container {
-						display: flex;
-						flex-direction: column;
-						flex-wrap: wrap;
-						height: 60vh;
-						align-content: flex-start;
-						.form-dropdown {
-							width: 18rem;
-							margin: 0.5rem 0;
-						}
-					}
-					.image-form-page {
-						display: flex;
-						.image-container {
-							width: 12vw;
-							/* height: 70vh; */
-							display: flex;
-							flex-direction: column;
-							margin-right: 1rem;
-
-							input {
-								background-color: chocolate;
-								color: cornsilk;
-								font-size: 0.7rem;
-							}
-							.imgPreview {
-								align-content: center;
-								img {
-									margin-left: auto;
-									margin-right: auto;
-									display: block;
-									width: 150px;
-									height: 150px;
-									object-fit: cover;
-								}
-
-								background-color: rgb(245, 245, 245);
-							}
-						}
-					}
 				}
 
 				.active-content {
@@ -140,17 +103,60 @@
 			.button-upload {
 				align-self: center;
 				padding: 5px;
-				color: rgb(0, 0, 0);
 				width: 60%;
 				margin: 5px;
 				border-radius: 0.5rem;
 				text-align: center;
 				font-size: 0.8rem;
 				background-color: var(--primary-color);
+				color: black;
+				text-transform: uppercase;
+				font-family: "Open Sans Condensed";
+				font-weight: bolder;
+				border: none;
 				cursor: pointer;
-				/* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
-				font-weight: bold;
 				box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+			}
+			.tab-container {
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+				height: 60vh;
+				align-content: flex-start;
+				.form-dropdown {
+					width: 18rem;
+					margin: 0.5rem 0;
+				}
+			}
+			.image-form-page {
+				display: flex;
+				background-color: white;
+				.image-container {
+					width: 12vw;
+					/* height: 70vh; */
+					display: flex;
+					flex-direction: column;
+					margin-right: 1rem;
+
+					input {
+						background-color: chocolate;
+						color: cornsilk;
+						font-size: 0.7rem;
+					}
+					.imgPreview {
+						align-content: center;
+						img {
+							margin-left: auto;
+							margin-right: auto;
+							display: block;
+							width: 150px;
+							height: 150px;
+							object-fit: cover;
+						}
+
+						background-color: rgb(245, 245, 245);
+					}
+				}
 			}
 		}
 	}

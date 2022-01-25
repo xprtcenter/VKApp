@@ -12,13 +12,24 @@ import Menubutton from "../../assets/menubutton.png";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectMenuHidden } from "../../redux/menu/menu.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectActiveHeader } from "../../redux/menu/menu.selectors";
+
 import { toggleMenuHidden } from "../../redux/menu/menu.action";
+import { activeHeaderButton } from "../../redux/menu/menu.action";
+
 import HeaderDateTime from "./Timer.component";
 
 import { auth } from "../../firebase/firebase.utils";
 import "./header.styles.scss";
 
-const Header = ({ currentUser, hidden, menuhidden, toggleMenuHidden }) => {
+const Header = ({
+	currentUser,
+	hidden,
+	menuhidden,
+	toggleMenuHidden,
+	activeheader,
+	activeHeaderButton,
+}) => {
 	//console.log("Test CurrentUser from header", currentUser.photoURL);
 	return (
 		<div className="main-header">
@@ -27,17 +38,26 @@ const Header = ({ currentUser, hidden, menuhidden, toggleMenuHidden }) => {
 				<HeaderDateTime />
 			</div>
 			<div className="header">
-				<Link to="/" className="logo-container">
-					<img src={logo} alt="swamiji" />
+				<div onClick={() => activeHeaderButton("home")}>
+					<Link
+						to="/"
+						className={
+							activeheader.toLowerCase() === "home"
+								? "logo-container active-header-button"
+								: "logo-container"
+						}
+					>
+						<img src={logo} alt="swamiji" />
 
-					<span className="text">HOME</span>
-				</Link>
+						<span className="text">HOME</span>
+					</Link>
+				</div>
 				<div className="nav-options-container .nav__menu">
-					{menuhidden ? null : (
+					{!menuhidden ? (
 						<div className="header-menu">
 							<HeaderModules />
 						</div>
-					)}
+					) : null}
 					<div className="menu-button-icon" onClick={toggleMenuHidden}>
 						<img src={Menubutton} alt="menubutton" />
 					</div>
@@ -59,7 +79,15 @@ const Header = ({ currentUser, hidden, menuhidden, toggleMenuHidden }) => {
 							<Submenu />
 						</div>
 					) : (
-						<Link className="sign-in" to="/signin">
+						<Link
+							onClick={() => activeHeaderButton("signin")}
+							className={
+								activeheader.toLowerCase() === "signin"
+									? "sign-in active-header-button"
+									: "sign-in"
+							}
+							to="/signin"
+						>
 							SIGN IN
 						</Link>
 					)}
@@ -89,6 +117,7 @@ class Submenu extends React.Component {
 						);
 						if (confirmBox) {
 							auth.signOut();
+							activeHeaderButton("signin");
 						}
 					}}
 				>
@@ -100,11 +129,13 @@ class Submenu extends React.Component {
 }
 const mapDispatchToProps = (dispatch) => ({
 	toggleMenuHidden: () => dispatch(toggleMenuHidden()),
+	activeHeaderButton: (url) => dispatch(activeHeaderButton(url)),
 });
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
 	hidden: selectCartHidden,
 	menuhidden: selectMenuHidden,
+	activeheader: selectActiveHeader,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

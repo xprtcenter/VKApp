@@ -3,6 +3,10 @@ export const options = {
 		{ value: "Active", label: "Active" },
 		{ value: "De-Active", label: "De-Active" },
 	],
+	ESIC: [
+		{ value: "Yes", label: "Yes" },
+		{ value: "No", label: "No" },
+	],
 	Gender: [
 		{ value: "Male", label: "Male" },
 		{ value: "Female", label: "Female" },

@@ -5,6 +5,7 @@ import PayrollMaster from "../../forms/Payroll-forms/payroll-master.component";
 import PayrollEmpList from "../../forms/Payroll-forms/payroll-emp-list.component";
 import PayrollDashboardPage from "../../forms/Payroll-forms/payroll-dashboard";
 import PayrollDeductionEntry from "../../forms/Payroll-forms/payroll-deduction-entry.component";
+import PayrollSalaryCaculationMaster from "../../forms/Payroll-forms/payroll-salary-calculation-master";
 
 import SMEDashboardPage from "../../forms/sme-forms/sme-dashboard";
 import ContractorMaster from "../../forms/sme-forms/contractor-master.component";
@@ -18,6 +19,11 @@ const RightFormPageContainer = () => {
 				<Route
 					exact
 					path="/payroll/paymaster"
+					render={() => <PayrollMaster />}
+				/>
+				<Route
+					exact
+					path="/payroll/paymaster/:id"
 					render={() => <PayrollMaster />}
 				/>
 				<Route
@@ -37,8 +43,13 @@ const RightFormPageContainer = () => {
 				/>
 				<Route
 					exact
-					path="/payroll/dedentry"
+					path="/payroll/salentry"
 					component={PayrollDeductionEntry}
+				/>
+				<Route
+					exact
+					path="/payroll/salcalcmaster"
+					component={PayrollSalaryCaculationMaster}
 				/>
 				<Route exact path="/sme/smeconmaster" component={ContractorMaster} />
 				<Route

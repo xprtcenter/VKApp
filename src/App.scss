@@ -9,7 +9,9 @@
 		align-items: center;
 	}
 }
-
+.active-header-button {
+	background-color: var(--primary-color);
+}
 @media only screen and (max-width: 1200px) {
 	/*Tablets [601px -> 1200px]*/
 	body {

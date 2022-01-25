@@ -1,7 +1,7 @@
 import React from "react";
 import FormInput from "../../component/form-input/form-input.component";
 import CustomButton from "../../component/custom-button/custom-button.component";
-import { firestore } from "../../firebase/firebase.utils";
+
 import "./user-profile.styles.scss";
 
 class UserProfile extends React.Component {

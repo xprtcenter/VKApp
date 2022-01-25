@@ -7,3 +7,8 @@ export const toggleMenuHidden = () => ({
 export const sideMenuHide = () => ({
 	type: MenuActionTypes.SIDE_MENU_HIDE,
 });
+
+export const activeHeaderButton = (url) => ({
+	type: MenuActionTypes.ACTIVE_HEADER_BUTTON,
+	payload: url,
+});

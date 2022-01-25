@@ -2,24 +2,27 @@ import React, { useState, useEffect } from "react";
 import "./payroll-deduction-entry.styles.scss";
 import Select from "react-select";
 import FormInput from "../../component/form-input/form-input.component";
-import { firestore } from "../../firebase/firebase.utils";
+import {
+	EmployeeData,
+	EmployeeDeduction,
+} from "./Functions/getemployeedetails";
 import CustomButton from "../../component/custom-button/custom-button.component";
 import avatar from "../../assets/avatar.png";
 
 const PayrollDeductionEntry = () => {
 	var months = [
-		{ value: "January", label: "January" },
-		{ value: "February", label: "February" },
-		{ value: "March", label: "March" },
-		{ value: "April", label: "April" },
-		{ value: "May", label: "May" },
-		{ value: "June", label: "June" },
-		{ value: "July", label: "July" },
-		{ value: "August", label: "August" },
-		{ value: "September", label: "September" },
-		{ value: "October", label: "October" },
-		{ value: "November", label: "November" },
-		{ value: "December", label: "December" },
+		{ value: "1", label: "January" },
+		{ value: "2", label: "February" },
+		{ value: "3", label: "March" },
+		{ value: "4", label: "April" },
+		{ value: "5", label: "May" },
+		{ value: "6", label: "June" },
+		{ value: "7", label: "July" },
+		{ value: "8", label: "August" },
+		{ value: "9", label: "September" },
+		{ value: "10", label: "October" },
+		{ value: "11", label: "November" },
+		{ value: "12", label: "December" },
 	];
 	var months1 = [
 		"January",
@@ -45,8 +48,15 @@ const PayrollDeductionEntry = () => {
 	];
 
 	var dt = new Date();
-	var monthName = months1[dt.getMonth()]; // "July" (or current month)
-	var yearName = dt.getFullYear(); // "2022" (or current year)
+	var monthNo = dt.getMonth();
+	var cyrrentMonthName = months1[monthNo]; // "July" (or current month)
+	var currentYear = dt.getFullYear(); // "2022" (or current year)
+
+	function daysInMonth(month, year) {
+		return new Date(year, month, 0).getDate();
+	}
+
+	var dayscount = daysInMonth(monthNo, currentYear);
 
 	const initialstate = {
 		EmployeeName: "",
@@ -57,11 +67,12 @@ const PayrollDeductionEntry = () => {
 		EmployeeAddress: "",
 		EmployeeContact: "",
 		EmployeeImgUrl: avatar,
-		month: monthName,
-		year: yearName,
+		month: cyrrentMonthName,
+		year: currentYear,
 		EmployeeDepartment: "",
 		fixBasic: "",
-		days: "",
+		days: dayscount,
+		monthNo: monthNo,
 		weeklyoff: "",
 		coff: "",
 		unpaidLeave: "",
@@ -93,11 +104,8 @@ const PayrollDeductionEntry = () => {
 	});
 
 	useEffect(() => {
-		const dbDrop = firestore
-			.collection("payrollData")
-			.doc("payrollEmpRegistration")
-			.collection("payrollEmployee")
-			.onSnapshot((items) => {
+		if (EmployeeName === "") {
+			EmployeeData.onSnapshot((items) => {
 				let employeeList = [];
 
 				items.forEach((item) => {
@@ -113,20 +121,20 @@ const PayrollDeductionEntry = () => {
 						EmployeeContact: data.EmployeeContact,
 						EmployeeImgUrl: data.EmployeeImgUrl,
 						EmployeeDepartment: data.EmployeeDepartment,
+						FixBasic: data.EmployeeBasicSalary,
 					});
 				});
 				setNewOptions({ EmployeeName: employeeList });
-				setDedData({ ...dedData, month: monthName });
+				setDedData({ ...dedData, days: dayscount });
 			});
-	}, []);
+		}
+		const newdays = daysInMonth(dedData.monthNo, dedData.year);
+
+		setDedData({ ...dedData, days: newdays });
+	}, [dedData.monthNo, dedData.year]);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-
-		const db = firestore
-			.collection("payrollData")
-			.doc("payrollDeduction")
-			.collection("payrollDeductionEntry");
 
 		let sData = {
 			month: dedData.month,
@@ -136,7 +144,7 @@ const PayrollDeductionEntry = () => {
 			PayrollCompanyName: dedData.PayrollCompanyName,
 			year: dedData.year,
 			EmployeeDepartment: dedData.EmployeeDepartment,
-			fixBasic: dedData.fixBasic,
+			FixBasic: dedData.FixBasic,
 			days: dedData.days,
 			weeklyoff: dedData.weeklyoff,
 			coff: dedData.coff,
@@ -162,8 +170,7 @@ const PayrollDeductionEntry = () => {
 		};
 
 		if (!dedData.Editid) {
-			await db
-				.add(sData)
+			await EmployeeDeduction.add(sData)
 				.then(() => {
 					setDedData(initialstate);
 					alert("Data Insert successfully!");
@@ -172,7 +179,7 @@ const PayrollDeductionEntry = () => {
 					console.log(e);
 				});
 		} else {
-			db.doc(dedData.Editid)
+			EmployeeDeduction.doc(dedData.Editid)
 				.update(sData)
 				.then(() => {
 					setDedData(initialstate);
@@ -199,7 +206,7 @@ const PayrollDeductionEntry = () => {
 		month,
 		year,
 		EmployeeDepartment,
-		fixBasic,
+		FixBasic,
 		days,
 		weeklyoff,
 		coff,
@@ -226,7 +233,7 @@ const PayrollDeductionEntry = () => {
 	} = dedData;
 	return (
 		<form className="form-container" onSubmit={handleSubmit}>
-			<h2 className="title">Deduction Entry form</h2>
+			<h2 className="title">Salary Entry form</h2>
 			<span>
 				Select month/year/Employee for enter Addition Deduction Value .
 			</span>
@@ -235,10 +242,14 @@ const PayrollDeductionEntry = () => {
 					<Select
 						className="dropdown-menu"
 						placeholder="Month for Deduction"
-						value={months.find((obj) => obj.value === month) || ""} // set selected value
+						value={months.find((obj) => obj.label === month) || ""} // set selected value
 						options={months} // set list of the data
 						onChange={(e) => {
-							setDedData({ ...dedData, month: e.value });
+							setDedData({
+								...dedData,
+								month: e.label,
+								monthNo: e.value,
+							});
 						}} // assign onChange function
 					/>
 					<Select
@@ -271,6 +282,7 @@ const PayrollDeductionEntry = () => {
 								EmployeeContact: e.EmployeeContact,
 								EmployeeImgUrl: e.EmployeeImgUrl,
 								EmployeeDepartment: e.EmployeeDepartment,
+								FixBasic: e.FixBasic,
 							});
 						}} // assign onChange function
 					/>
@@ -304,6 +316,15 @@ const PayrollDeductionEntry = () => {
 							<div className="header-text">
 								Contact:<strong> {EmployeeContact}</strong>
 							</div>
+							<div className="header-text">
+								FixBasic:<strong> {FixBasic}</strong>
+							</div>
+							<div className="header-text">
+								In Hand Salary:<strong> {inHandSalary}</strong>
+							</div>
+							<div className="header-text">
+								CTC Amount:<strong> {ctc}</strong>
+							</div>
 						</div>
 					</div>
 				) : null}
@@ -314,19 +335,13 @@ const PayrollDeductionEntry = () => {
 						className={TabtoggleState === 1 ? "tabs active-tabs" : "tabs"}
 						onClick={() => setDedData({ ...dedData, TabtoggleState: 1 })}
 					>
-						First Tab
+						Deduction
 					</div>
 					<div
 						className={TabtoggleState === 2 ? "tabs active-tabs" : "tabs"}
 						onClick={() => setDedData({ ...dedData, TabtoggleState: 2 })}
 					>
-						Second Tab
-					</div>
-					<div
-						className={TabtoggleState === 3 ? "tabs active-tabs" : "tabs"}
-						onClick={() => setDedData({ ...dedData, TabtoggleState: 3 })}
-					>
-						Third Tab
+						Addition
 					</div>
 				</div>
 				<div className="content-tabs">
@@ -335,37 +350,92 @@ const PayrollDeductionEntry = () => {
 							TabtoggleState === 1 ? "content  active-content" : "content"
 						}
 					>
+						<div className="card-for-add-ded">
+							<div className="header-text">
+								Days in Month:<strong> {days}</strong>
+							</div>
+							<div className="header-text">
+								Non Working days: <strong>{nonWorkingdays}</strong>
+							</div>
+							<div className="header-text">
+								Total Leave: <strong>{totalLeave}</strong>
+							</div>
+							<div className="header-text">
+								Working days: <strong>{workingDays}</strong>
+							</div>
+							<div className="header-text">
+								Leave deduction:<strong> {leaveDeduction}</strong>
+							</div>
+							<div className="header-text">
+								ESIC Employee: <strong>{esicEmployee}</strong>
+							</div>
+
+							<div className="header-text">
+								PF Employee: <strong>{pfEmployee}</strong>
+							</div>
+							<div className="header-text">
+								Calculativr Basic: <strong>{calculativeBasic}</strong>
+							</div>
+							<div className="header-text">
+								Total Deduction:<strong> {totalDeduction}</strong>
+							</div>
+
+							<div className="header-text">
+								Total addition: <strong>{calculativeBasic}</strong>
+							</div>
+							<div className="header-text">
+								ESIC Employer: <strong>{esicEmployer}</strong>
+							</div>
+							<div className="header-text">
+								PF Employer: <strong>{pfEmployer}</strong>
+							</div>
+						</div>
 						<div className="tab-container">
 							<FormInput
-								type="text"
-								name="fixBasic"
-								value={fixBasic}
-								onChange={handleChange}
-								label="FIXBASIC"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="days"
-								value={days}
-								onChange={handleChange}
-								label="DAYS"
-								required
-							/>
-							<FormInput
-								type="text"
+								type="number"
 								name="weeklyoff"
-								value={weeklyoff}
+								value={weeklyoff || ""}
 								onChange={handleChange}
 								label="WEEKLY OFF"
 								required
 							/>
 							<FormInput
-								type="text"
+								type="number"
 								name="coff"
-								value={coff}
+								value={coff || ""}
 								onChange={handleChange}
 								label="C OFF"
+							/>
+
+							<FormInput
+								type="number"
+								name="unpaidLeave"
+								value={unpaidLeave || ""}
+								onChange={handleChange}
+								label="UNPAID LEAVE/LWP"
+							/>
+							<FormInput
+								type="number"
+								name="paidLeave"
+								value={paidLeave || ""}
+								onChange={handleChange}
+								label="PAID LEAVE/EXTRA WORK"
+							/>
+
+							<FormInput
+								type="number"
+								name="professionalTax"
+								value={professionalTax || ""}
+								onChange={handleChange}
+								label="PROFESSIONAL TAX"
+								required
+							/>
+							<FormInput
+								type="number"
+								name="advanceLoan"
+								value={advanceLoan || ""}
+								onChange={handleChange}
+								label="ADVANCE LOAN"
 								required
 							/>
 						</div>
@@ -375,165 +445,70 @@ const PayrollDeductionEntry = () => {
 							TabtoggleState === 2 ? "content  active-content" : "content"
 						}
 					>
-						<div className="tab-container">
-							<FormInput
-								type="text"
-								name="unpaidLeave"
-								value={unpaidLeave}
-								onChange={handleChange}
-								label="UN PAID LEAVE"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="paidLeave"
-								value={paidLeave}
-								onChange={handleChange}
-								label="PAID LEAVE"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="nonWorkingdays"
-								value={nonWorkingdays}
-								onChange={handleChange}
-								label="NON WORKING DAYS"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="totalLeave"
-								value={totalLeave}
-								onChange={handleChange}
-								label="TOTAL LEAVE"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="workingDays"
-								value={workingDays}
-								onChange={handleChange}
-								label="WORKING DAYS"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="leaveDeduction"
-								value={leaveDeduction}
-								onChange={handleChange}
-								label="LEAVE DEDUCTION"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="esicEmployee"
-								value={esicEmployee}
-								onChange={handleChange}
-								label="ESIC EMPLOYEE"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="esicEmployer"
-								value={esicEmployer}
-								onChange={handleChange}
-								label="ESIC EMPLOYER"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="pfEmployee"
-								value={pfEmployee}
-								onChange={handleChange}
-								label="PF EMPLOYEE"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="pfEmployer"
-								value={pfEmployer}
-								onChange={handleChange}
-								label="PF EMPLOYER"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="professionalTax"
-								value={professionalTax}
-								onChange={handleChange}
-								label="PROFESSIONAL TAX"
-								required
-							/>
+						<div className="card-for-add-ded">
+							<div className="header-text">
+								Days in Month:<strong> {days}</strong>
+							</div>
+							<div className="header-text">
+								Non Working days: <strong>{nonWorkingdays}</strong>
+							</div>
+							<div className="header-text">
+								Total Leave: <strong>{totalLeave}</strong>
+							</div>
+							<div className="header-text">
+								Working days: <strong>{workingDays}</strong>
+							</div>
+							<div className="header-text">
+								Leave deduction:<strong> {leaveDeduction}</strong>
+							</div>
+							<div className="header-text">
+								ESIC Employee: <strong>{esicEmployee}</strong>
+							</div>
+
+							<div className="header-text">
+								PF Employee: <strong>{pfEmployee}</strong>
+							</div>
+							<div className="header-text">
+								Calculativr Basic: <strong>{calculativeBasic}</strong>
+							</div>
+							<div className="header-text">
+								Total Deduction:<strong> {totalDeduction}</strong>
+							</div>
+
+							<div className="header-text">
+								Total addition: <strong>{calculativeBasic}</strong>
+							</div>
+							<div className="header-text">
+								ESIC Employer: <strong>{esicEmployer}</strong>
+							</div>
+							<div className="header-text">
+								PF Employer: <strong>{pfEmployer}</strong>
+							</div>
 						</div>
-					</div>
-					<div
-						className={
-							TabtoggleState === 3 ? "content  active-content" : "content"
-						}
-					>
 						<div className="tab-container">
 							<FormInput
-								type="text"
-								name="advanceLoan"
-								value={advanceLoan}
-								onChange={handleChange}
-								label="ADVANCE LOAN"
-								required
-							/>
-							<FormInput
-								type="text"
+								type="number"
 								name="vehicleAllownces"
-								value={vehicleAllownces}
+								value={vehicleAllownces || ""}
 								onChange={handleChange}
 								label="VEHICLE ALLOWNCES"
 								required
 							/>
 							<FormInput
-								type="text"
+								type="number"
 								name="houseAllownces"
-								value={houseAllownces}
+								value={houseAllownces || ""}
 								onChange={handleChange}
 								label="HOUSE ALLOWNCES"
 								required
 							/>
+
 							<FormInput
-								type="text"
-								name="totalDeduction"
-								value={totalDeduction}
-								onChange={handleChange}
-								label="TOTAL DEDUCTION"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="calculativeBasic"
-								value={calculativeBasic}
-								onChange={handleChange}
-								label="CALCULATIVE BASIC"
-								required
-							/>
-							<FormInput
-								type="text"
+								type="number"
 								name="allowncesOther"
-								value={allowncesOther}
+								value={allowncesOther || ""}
 								onChange={handleChange}
 								label="ALLOWNCES OTHER"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="inHandSalary"
-								value={inHandSalary}
-								onChange={handleChange}
-								label="FINAL SALARY"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="ctc"
-								value={ctc}
-								onChange={handleChange}
-								label="CTC"
 								required
 							/>
 						</div>

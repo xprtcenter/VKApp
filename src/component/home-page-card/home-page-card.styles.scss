@@ -13,6 +13,9 @@
 	flex-direction: column;
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 20px 20px 0 0;
+	box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
+	-webkit-box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
+	-moz-box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
 	.card-content {
 		flex: 1 1 auto;
 		font-size: 3rem;

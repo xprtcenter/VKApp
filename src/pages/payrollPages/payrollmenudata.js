@@ -27,14 +27,14 @@ const payrolldata = {
 		{
 			id: 4,
 			iconname: BiFoodTag,
-			menuName: "Deduction Master",
-			menuUrl: "dedmaster",
+			menuName: "Salary Calculation Master",
+			menuUrl: "salcalcmaster",
 		},
 		{
 			id: 5,
 			iconname: BiDollarCircle,
-			menuName: "Deduction Entry",
-			menuUrl: "dedentry",
+			menuName: "Salary Entry",
+			menuUrl: "salentry",
 		},
 		{
 			id: 6,

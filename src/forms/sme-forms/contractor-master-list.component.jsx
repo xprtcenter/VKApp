@@ -36,9 +36,6 @@ const ContractorMasterList = () => {
 		console.log("Testing newData from sme", newData);
 	}, []);
 
-	const defaultImage =
-		"https://www.pngarts.com/files/3/Avatar-PNG-Download-Image.png";
-
 	return (
 		<>
 			<h3>Table Data Here</h3>

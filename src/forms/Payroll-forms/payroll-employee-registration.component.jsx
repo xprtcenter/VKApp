@@ -41,6 +41,8 @@ const initialState = {
 	EmployeePANNo: "",
 	EmployeeAadharNo: "",
 	PayrollCompanyName: "VKBORL Hospital",
+	EmployerCompanyName: "xprt Hospital",
+	ESICCalculation: "",
 	EmployeeImageStatus: "Not Upload",
 	TabtoggleState: 1,
 };
@@ -60,7 +62,7 @@ class PayrollEmpRegMaster extends React.Component {
 			`payrollData/payrollEmpRegistration/payrollEmployee/${getIDData}`,
 		);
 
-		const EmpData = dbRef
+		dbRef
 			.get()
 			.then((doc) => {
 				if (doc.exists) {
@@ -243,6 +245,7 @@ class PayrollEmpRegMaster extends React.Component {
 			EmployeeESICNo,
 			EmployeePANNo,
 			EmployeeAadharNo,
+			ESICCalculation,
 			EmployeeImageStatus,
 			TabtoggleState,
 		} = this.state;
@@ -451,6 +454,18 @@ class PayrollEmpRegMaster extends React.Component {
 								onChange={this.handleChange}
 								label="Onroll or Contractor"
 								required
+							/>
+							<Select
+								className="form-dropdown"
+								placeholder="ESIC Calculation"
+								value={
+									options.ESIC.find((obj) => obj.value === ESICCalculation) ||
+									""
+								} // set selected value
+								options={options.ESIC} // set list of the data
+								onChange={(e) => {
+									this.setState({ ESICCalculation: e.value });
+								}} // assign onChange function
 							/>
 						</div>
 					</div>

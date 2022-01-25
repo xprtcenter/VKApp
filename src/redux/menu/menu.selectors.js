@@ -11,3 +11,8 @@ export const selectSideHide = createSelector(
 	[selectMenu],
 	(menu) => menu.sidehide,
 );
+
+export const selectActiveHeader = createSelector(
+	[selectMenu],
+	(menu) => menu.activeheader,
+);

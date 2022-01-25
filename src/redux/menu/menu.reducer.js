@@ -3,6 +3,7 @@ import MenuActionTypes from "./menu.types";
 const INITIAL_STATE = {
 	menuhidden: false,
 	sidehide: true,
+	activeheader: "home",
 };
 
 const menuReducer = (state = INITIAL_STATE, action) => {
@@ -17,7 +18,11 @@ const menuReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				sidehide: !state.sidehide,
 			};
-
+		case MenuActionTypes.ACTIVE_HEADER_BUTTON:
+			return {
+				...state,
+				activeheader: action.payload,
+			};
 		default:
 			return state;
 	}

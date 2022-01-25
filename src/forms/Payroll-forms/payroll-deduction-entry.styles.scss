@@ -22,12 +22,23 @@
 		display: flex;
 		width: 100%;
 		flex-wrap: wrap;
-		padding: 0 0px 5px 0;
 		background-color: var(--primary-color-m);
 
 		.header-text {
-			width: 30%;
-			padding: 10px 20px;
+			width: 25%;
+			padding: 5px 5px;
 		}
+	}
+}
+.card-for-add-ded {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	/* padding: 0 0 3px 0; */
+	background-color: var(--primary-color);
+
+	.header-text {
+		width: 15%;
+		padding: 5px 5px;
 	}
 }

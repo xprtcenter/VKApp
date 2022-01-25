@@ -14,25 +14,16 @@ class HeaderModules extends React.Component {
 		this.state = {
 			currentUser: currentUser,
 			headerdata,
-			ActiveModule: "",
 		};
 	}
-	handleForUpdate(someArg) {
-		this.setState({ ActiveModule: someArg });
-	}
-	render(props) {
-		var handleForUpdate = this.handleForUpdate;
+
+	render() {
 		return (
-			<>
+			<React.Fragment>
 				{this.state.headerdata.sections.map(({ id, ...otherSectionProps }) => (
-					<HeaderMenuItem
-						handleForUpdate={handleForUpdate.bind(this)}
-						key={id}
-						ActiveModule={this.state.ActiveModule}
-						{...otherSectionProps}
-					/>
+					<HeaderMenuItem key={id} {...otherSectionProps} />
 				))}
-			</>
+			</React.Fragment>
 		);
 	}
 }
