@@ -1,23 +1,35 @@
 {
   "files": {
-    "main.css": "/VKApp/static/css/main.a49bfd00.chunk.css",
-    "main.js": "/VKApp/static/js/main.bdb9d68d.chunk.js",
-    "main.js.map": "/VKApp/static/js/main.bdb9d68d.chunk.js.map",
-    "runtime-main.js": "/VKApp/static/js/runtime-main.e0a0c5a7.js",
-    "runtime-main.js.map": "/VKApp/static/js/runtime-main.e0a0c5a7.js.map",
-    "static/js/2.84c3d8de.chunk.js": "/VKApp/static/js/2.84c3d8de.chunk.js",
-    "static/js/2.84c3d8de.chunk.js.map": "/VKApp/static/js/2.84c3d8de.chunk.js.map",
+    "main.css": "/VKApp/static/css/main.95dd6bad.chunk.css",
+    "main.js": "/VKApp/static/js/main.6202e852.chunk.js",
+    "main.js.map": "/VKApp/static/js/main.6202e852.chunk.js.map",
+    "runtime-main.js": "/VKApp/static/js/runtime-main.c4e0b979.js",
+    "runtime-main.js.map": "/VKApp/static/js/runtime-main.c4e0b979.js.map",
+    "static/css/2.ff602127.chunk.css": "/VKApp/static/css/2.ff602127.chunk.css",
+    "static/js/2.266ee58e.chunk.js": "/VKApp/static/js/2.266ee58e.chunk.js",
+    "static/js/2.266ee58e.chunk.js.map": "/VKApp/static/js/2.266ee58e.chunk.js.map",
+    "static/js/3.75f64a0f.chunk.js": "/VKApp/static/js/3.75f64a0f.chunk.js",
+    "static/js/3.75f64a0f.chunk.js.map": "/VKApp/static/js/3.75f64a0f.chunk.js.map",
+    "static/js/4.822a3154.chunk.js": "/VKApp/static/js/4.822a3154.chunk.js",
+    "static/js/4.822a3154.chunk.js.map": "/VKApp/static/js/4.822a3154.chunk.js.map",
+    "static/js/5.96528066.chunk.js": "/VKApp/static/js/5.96528066.chunk.js",
+    "static/js/5.96528066.chunk.js.map": "/VKApp/static/js/5.96528066.chunk.js.map",
     "index.html": "/VKApp/index.html",
-    "static/css/main.a49bfd00.chunk.css.map": "/VKApp/static/css/main.a49bfd00.chunk.css.map",
-    "static/js/2.84c3d8de.chunk.js.LICENSE.txt": "/VKApp/static/js/2.84c3d8de.chunk.js.LICENSE.txt",
+    "static/css/2.ff602127.chunk.css.map": "/VKApp/static/css/2.ff602127.chunk.css.map",
+    "static/css/main.95dd6bad.chunk.css.map": "/VKApp/static/css/main.95dd6bad.chunk.css.map",
+    "static/js/2.266ee58e.chunk.js.LICENSE.txt": "/VKApp/static/js/2.266ee58e.chunk.js.LICENSE.txt",
+    "static/js/3.75f64a0f.chunk.js.LICENSE.txt": "/VKApp/static/js/3.75f64a0f.chunk.js.LICENSE.txt",
+    "static/js/4.822a3154.chunk.js.LICENSE.txt": "/VKApp/static/js/4.822a3154.chunk.js.LICENSE.txt",
+    "static/js/5.96528066.chunk.js.LICENSE.txt": "/VKApp/static/js/5.96528066.chunk.js.LICENSE.txt",
     "static/media/COMLOGO2.079029bc.png": "/VKApp/static/media/COMLOGO2.079029bc.png",
     "static/media/arrow-right.9b84dde7.svg": "/VKApp/static/media/arrow-right.9b84dde7.svg",
     "static/media/swami2.808446dc.png": "/VKApp/static/media/swami2.808446dc.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.e0a0c5a7.js",
-    "static/js/2.84c3d8de.chunk.js",
-    "static/css/main.a49bfd00.chunk.css",
-    "static/js/main.bdb9d68d.chunk.js"
+    "static/js/runtime-main.c4e0b979.js",
+    "static/css/2.ff602127.chunk.css",
+    "static/js/2.266ee58e.chunk.js",
+    "static/css/main.95dd6bad.chunk.css",
+    "static/js/main.6202e852.chunk.js"
   ]
 }
