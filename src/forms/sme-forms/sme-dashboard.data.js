@@ -6,4 +6,5 @@ export const smeDashboardOption = {
 		{ value: 26, label: "Outsourse" },
 		{ value: 65, label: "Royal" },
 	],
+	title: "SME Dashboard",
 };

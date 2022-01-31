@@ -13,9 +13,11 @@ const FormPage = ({ data, match, sideMenuHide, sidehide }) => {
 	return (
 		<div className="form-page">
 			<div className="leftside-menu-block open">
-				{data.map(({ id, ...otherProps }) => (
-					<FormSidebarMenu key={id} {...otherProps} />
-				))}
+				<div className="side-menu-text-block">
+					{data.map(({ id, ...otherProps }) => (
+						<FormSidebarMenu key={id} {...otherProps} />
+					))}
+				</div>
 				<div
 					className={
 						sidehide ? "sidebar-close-button" : "sidebar-close-button close"
@@ -25,9 +27,8 @@ const FormPage = ({ data, match, sideMenuHide, sidehide }) => {
 					<SidebarClosebutton className="right-button" />
 				</div>
 			</div>
-			<div className="rightside-main-section">
-				<RightFormPageContainer match={match} />
-			</div>
+
+			<RightFormPageContainer match={match} />
 		</div>
 	);
 };

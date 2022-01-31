@@ -2,6 +2,9 @@
 	border-collapse: collapse;
 	margin-top: 1.6rem;
 	background-color: var(--primary-color-m);
+	box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
+	-webkit-box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
+	-moz-box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
 
 	.table-header {
 		border: 0.07rem solid var(--primary-color);
@@ -29,9 +32,6 @@
 				text-align: center;
 			}
 			.table-image-container {
-				/* display: flex;
-				justify-content: center;
-				align-items: center; */
 				img {
 					object-fit: cover;
 					width: 2rem;
@@ -62,4 +62,14 @@
 .btn-delete {
 	background-color: rgb(255, 0, 0);
 	color: white;
+}
+.MuiTableRow-root:hover {
+	background-color: var(--primary-color);
+}
+.custom-table {
+	margin-top: 2vh;
+	z-index: 1;
+	box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
+	-webkit-box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
+	-moz-box-shadow: 13px 17px 10px -5px rgba(20, 18, 18, 0.68);
 }

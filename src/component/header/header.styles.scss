@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	position: sticky;
-	z-index: 5;
+	z-index: 20;
 	top: 0;
 	background-color: var(--header-background-color);
 	width: 100vw;
@@ -16,8 +16,8 @@
 		align-items: center;
 		width: 100vw;
 		height: fit-content;
-		border-top: 0.03rem solid var(--primary-color);
-		border-bottom: 0.03rem solid var(--primary-color);
+		border-top: 0.03rem solid var(--border-color-header);
+		border-bottom: 0.03rem solid var(--border-color-header);
 		p {
 			font-size: calc(8px + 0.5vw);
 			margin: 0 3vw;
@@ -28,9 +28,8 @@
 	.header {
 		display: flex;
 		justify-content: space-between;
-		/* padding: 0.3rem calc(2vw + 1vh); */
 		padding: 0 calc(2vw + 1vh);
-		border-bottom: 0.03rem solid var(--primary-color);
+		border-bottom: 0.03rem solid var(--border-color-header);
 
 		.logo-container {
 			display: flex;
@@ -141,7 +140,7 @@
 				width: 12vw;
 				padding: 2vh;
 				background-color: var(--primary-color-m);
-				z-index: 5;
+				z-index: 25;
 
 				.drop {
 					color: var(--font-primary-color);
@@ -179,7 +178,7 @@
 							width: 12vw;
 							padding: 2vh;
 							background-color: var(--primary-color-m);
-							z-index: 5;
+							z-index: 25;
 							.nav-option {
 								/* padding: 0 5vw;
 								border: 0.03rem solid var(--primary-color); */

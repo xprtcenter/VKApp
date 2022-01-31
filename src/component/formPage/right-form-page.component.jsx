@@ -14,7 +14,7 @@ import ContractorMasterList from "../../forms/sme-forms/contractor-master-list.c
 
 const RightFormPageContainer = () => {
 	return (
-		<>
+		<div className="right-side-main-section">
 			<Switch>
 				<Route
 					exact
@@ -61,7 +61,7 @@ const RightFormPageContainer = () => {
 				<Route exact path="/payroll" component={PayrollDashboardPage} />
 				<Route exact path="/sme" component={SMEDashboardPage} />
 			</Switch>
-		</>
+		</div>
 	);
 };
 

@@ -239,9 +239,9 @@ class PayrollMaster extends React.Component {
 		} = this.state;
 
 		return (
-			<React.Fragment>
-				<form className="form-container" onSubmit={this.handleSubmit}>
-					<h2 className="title">Employer Registration form</h2>
+			<div className="form-container">
+				<form onSubmit={this.handleSubmit}>
+					<h2 className="section-title">Employer Registration form</h2>
 
 					<div className="image-form-page">
 						<div className="image-container">
@@ -354,7 +354,8 @@ class PayrollMaster extends React.Component {
 					</CustomButton>
 				</form>
 
-				<h2 className="title">Employer List</h2>
+				<h2 className="section-title">Employer List</h2>
+
 				<table className="table-page">
 					<thead>
 						<tr className="table-header">
@@ -396,7 +397,7 @@ class PayrollMaster extends React.Component {
 						))}
 					</tbody>
 				</table>
-			</React.Fragment>
+			</div>
 		);
 	}
 }

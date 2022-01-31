@@ -1,12 +1,12 @@
-.main-container {
+.root-container {
 	display: flex;
 	flex-direction: column;
 
 	.main-section {
-		width: 100vw;
-		z-index: 2;
+		/* width: 100vw; */
+		/* z-index: 2;
 		display: flex;
-		align-items: center;
+		align-items: center; */
 	}
 }
 .active-header-button {

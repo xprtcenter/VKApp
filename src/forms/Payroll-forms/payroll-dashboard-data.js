@@ -10,4 +10,5 @@ export const payrollDashboardOption = {
 		{ value: 45, label: "House Keeping" },
 		{ value: 55, label: "IT Department" },
 	],
+	title: "Payroll Dashboard",
 };

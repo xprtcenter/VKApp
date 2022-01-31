@@ -233,11 +233,12 @@ const PayrollDeductionEntry = () => {
 	} = dedData;
 	return (
 		<form className="form-container" onSubmit={handleSubmit}>
-			<h2 className="title">Salary Entry form</h2>
-			<span>
+			<h2 className="section-title">Salary Entry form</h2>
+			<p className="section-subtitle">
 				Select month/year/Employee for enter Addition Deduction Value .
-			</span>
-			<div className="selection-container">
+			</p>
+
+			<div className="deduction-dropdown-with-header">
 				<div className="selection-menu">
 					<Select
 						className="dropdown-menu"

@@ -4,8 +4,10 @@ import { smeDashboardOption } from "./sme-dashboard.data";
 const SMEDashboardPage = () => {
 	return (
 		<>
-			<h1>SME Dashboard</h1>
-			<CustomHomeCard data={smeDashboardOption.name} />
+			<CustomHomeCard
+				data={smeDashboardOption.name}
+				title={smeDashboardOption.title}
+			/>
 		</>
 	);
 };

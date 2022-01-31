@@ -76,14 +76,10 @@ class ContractorMaster extends React.Component {
 		} = this.state;
 
 		return (
-			<div className="form-main-container">
+			<form className="form-container" onSubmit={this.handleSubmit}>
 				<h2 className="title">Contractor/Company Registration form</h2>
 				<span>Register your company for login credential.</span>
-
-				<form
-					className="contractor-registration-form"
-					onSubmit={this.handleSubmit}
-				>
+				<div className="tab-container">
 					<FormInput
 						type="text"
 						name="displayName"
@@ -152,10 +148,12 @@ class ContractorMaster extends React.Component {
 						label="Supervisor Contact No."
 						required
 					/>
+				</div>
 
-					<CustomButton type="submit">SUBMIT</CustomButton>
-				</form>
-			</div>
+				<CustomButton type="submit" sizefix>
+					SUBMIT
+				</CustomButton>
+			</form>
 		);
 	}
 }

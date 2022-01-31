@@ -1,3 +1,6 @@
+.deduction-dropdown-with-header {
+}
+
 .selection-menu {
 	display: flex;
 	justify-content: start;
@@ -5,6 +8,9 @@
 		width: 400px;
 		margin: 15px 5px;
 	}
+}
+.base-form {
+	background-color: var(--form-container-background);
 }
 .card-for-image-text {
 	display: flex;

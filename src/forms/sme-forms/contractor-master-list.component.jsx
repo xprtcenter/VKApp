@@ -37,7 +37,7 @@ const ContractorMasterList = () => {
 	}, []);
 
 	return (
-		<>
+		<React.Fragment>
 			<h3>Table Data Here</h3>
 			<table className="table-page">
 				<thead>
@@ -61,7 +61,7 @@ const ContractorMasterList = () => {
 					))}
 				</tbody>
 			</table>
-		</>
+		</React.Fragment>
 	);
 };
 

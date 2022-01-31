@@ -2,6 +2,7 @@ import MenuActionTypes from "./menu.types";
 
 const INITIAL_STATE = {
 	menuhidden: false,
+	sideactive: "",
 	sidehide: true,
 	activeheader: "home",
 };
@@ -22,6 +23,11 @@ const menuReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				activeheader: action.payload,
+			};
+		case MenuActionTypes.SIDE_MENU_ACTIVE:
+			return {
+				...state,
+				sideactive: action.payload,
 			};
 		default:
 			return state;

@@ -252,271 +252,273 @@ class PayrollEmpRegMaster extends React.Component {
 
 		return (
 			<form className="form-container" onSubmit={this.handleSubmit}>
-				<h2 className="title">Employee Registration form</h2>
-				<div className="bloc-tabs">
-					<div
-						className={TabtoggleState === 1 ? "tabs active-tabs" : "tabs"}
-						onClick={() => this.setState({ TabtoggleState: 1 })}
-					>
-						Basic Info
+				<h2 className="section-title">Employee Registration form</h2>
+				<div className="base-form">
+					<div className="bloc-tabs">
+						<div
+							className={TabtoggleState === 1 ? "tabs active-tabs" : "tabs"}
+							onClick={() => this.setState({ TabtoggleState: 1 })}
+						>
+							Basic Info
+						</div>
+						<div
+							className={TabtoggleState === 2 ? "tabs active-tabs" : "tabs"}
+							onClick={() => this.setState({ TabtoggleState: 2 })}
+						>
+							Joining Info
+						</div>
+						<div
+							className={TabtoggleState === 3 ? "tabs active-tabs" : "tabs"}
+							onClick={() => this.setState({ TabtoggleState: 3 })}
+						>
+							Bank Info
+						</div>
 					</div>
-					<div
-						className={TabtoggleState === 2 ? "tabs active-tabs" : "tabs"}
-						onClick={() => this.setState({ TabtoggleState: 2 })}
-					>
-						Joining Info
-					</div>
-					<div
-						className={TabtoggleState === 3 ? "tabs active-tabs" : "tabs"}
-						onClick={() => this.setState({ TabtoggleState: 3 })}
-					>
-						Bank Info
-					</div>
-				</div>
-				<div className="content-tabs">
-					<div
-						className={
-							TabtoggleState === 1 ? "content  active-content" : "content"
-						}
-					>
-						<h3 className="tab-title">Basic Information </h3>
-						<div className="image-form-page">
-							<div className="image-container">
-								<div className="imgPreview">
-									{EmployeeImagePreviewUrl ? (
-										<img src={EmployeeImagePreviewUrl} alt="" />
-									) : (
-										<img src={avatar} alt="" />
-									)}
+					<div className="content-tabs">
+						<div
+							className={
+								TabtoggleState === 1 ? "content  active-content" : "content"
+							}
+						>
+							<h3 className="tab-title">Basic Information </h3>
+							<div className="image-form-page">
+								<div className="image-container">
+									<div className="imgPreview">
+										{EmployeeImagePreviewUrl ? (
+											<img src={EmployeeImagePreviewUrl} alt="" />
+										) : (
+											<img src={avatar} alt="" />
+										)}
+									</div>
+									<div className="status">
+										<h4>{EmployeeImageStatus}</h4>
+									</div>
+									<input type="file" onChange={this.handleImage} />
+									<div
+										className="button-upload"
+										onClick={() => this.handleImageUpload(EmployeeFile)}
+									>
+										Upload
+									</div>
 								</div>
-								<div className="status">
-									<h4>{EmployeeImageStatus}</h4>
-								</div>
-								<input type="file" onChange={this.handleImage} />
-								<div
-									className="button-upload"
-									onClick={() => this.handleImageUpload(EmployeeFile)}
-								>
-									Upload
+								<div className="tab-container">
+									<FormInput
+										type="number"
+										name="EmployeeCode"
+										value={EmployeeCode || ""}
+										onChange={this.handleChange}
+										label="Employee Code"
+										required
+									/>
+									<FormInput
+										type="text"
+										name="EmployeeName"
+										value={EmployeeName || ""}
+										onChange={this.handleChange}
+										label="Employee Name"
+										required
+									/>
+									<Select
+										className="form-dropdown"
+										placeholder="Select Gender"
+										value={
+											options.Gender.find(
+												(obj) => obj.value === EmployeeGender,
+											) || ""
+										} // set selected value
+										options={options.Gender} // set list of the data
+										onChange={(e) => {
+											this.setState({ EmployeeGender: e.value });
+										}} // assign onChange function
+									/>
+
+									<FormInput
+										type="date"
+										label="Date of Birth"
+										name="EmployeeDOB"
+										value={EmployeeDOB || ""}
+										onChange={this.handleChange}
+										required
+									/>
+									<FormInput
+										type="text"
+										name="EmployeeAddress"
+										value={EmployeeAddress || ""}
+										onChange={this.handleChange}
+										label="Employee Address"
+										required
+									/>
+									<FormInput
+										type="text"
+										name="EmployeePAddress"
+										value={EmployeePAddress || ""}
+										onChange={this.handleChange}
+										label="Permanent Address"
+										required
+									/>
+									<FormInput
+										type="text"
+										name="EmployeeContact"
+										value={EmployeeContact || ""}
+										onChange={this.handleChange}
+										label="Employee Contact"
+										required
+									/>
+									<FormInput
+										type="email"
+										name="EmployeeEmail"
+										value={EmployeeEmail || ""}
+										onChange={this.handleChange}
+										label="Email Address"
+										required
+									/>
 								</div>
 							</div>
+						</div>
+
+						<div
+							className={
+								TabtoggleState === 2 ? "content  active-content" : "content"
+							}
+						>
+							<h3 className="tab-title">Joining Information </h3>
 							<div className="tab-container">
+								<Select
+									className="form-dropdown"
+									placeholder="Select Department"
+									value={
+										options.Department.find(
+											(obj) => obj.value === EmployeeDepartment,
+										) || ""
+									} // set selected value
+									options={options.Department} // set list of the data
+									onChange={(e) => {
+										this.setState({ EmployeeDepartment: e.value });
+									}} // assign onChange function
+								/>
+								<Select
+									className="form-dropdown"
+									placeholder="Active or De-active"
+									value={
+										options.Active.find(
+											(obj) => obj.value === EmployeeStatusActive,
+										) || ""
+									} // set selected value
+									options={options.Active} // set list of the data
+									onChange={(e) => {
+										this.setState({ EmployeeStatusActive: e.value });
+									}} // assign onChange function
+								/>
 								<FormInput
-									type="number"
-									name="EmployeeCode"
-									value={EmployeeCode || ""}
+									type="date"
+									name="EmployeeDateofJoining"
+									value={EmployeeDateofJoining || ""}
 									onChange={this.handleChange}
-									label="Employee Code"
+									label="Date of Joining"
+									required
+								/>
+								<FormInput
+									type="date"
+									name="EmployeeDateofLeaving"
+									value={EmployeeDateofLeaving || ""}
+									onChange={this.handleChange}
+									label="Date of Leaving"
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeESICNo"
+									value={EmployeeESICNo || ""}
+									onChange={this.handleChange}
+									label="ESIC No"
 									required
 								/>
 								<FormInput
 									type="text"
-									name="EmployeeName"
-									value={EmployeeName || ""}
+									name="EmployeeUANNo"
+									value={EmployeeUANNo || ""}
 									onChange={this.handleChange}
-									label="Employee Name"
+									label="UAN No"
+									required
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeBasicSalary"
+									value={EmployeeBasicSalary || ""}
+									onChange={this.handleChange}
+									label="Basic Salary"
+									required
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeOnrollContractor"
+									value={EmployeeOnrollContractor || ""}
+									onChange={this.handleChange}
+									label="Onroll or Contractor"
 									required
 								/>
 								<Select
 									className="form-dropdown"
-									placeholder="Select Gender"
+									placeholder="ESIC Calculation"
 									value={
-										options.Gender.find(
-											(obj) => obj.value === EmployeeGender,
-										) || ""
+										options.ESIC.find((obj) => obj.value === ESICCalculation) ||
+										""
 									} // set selected value
-									options={options.Gender} // set list of the data
+									options={options.ESIC} // set list of the data
 									onChange={(e) => {
-										this.setState({ EmployeeGender: e.value });
+										this.setState({ ESICCalculation: e.value });
 									}} // assign onChange function
-								/>
-
-								<FormInput
-									type="date"
-									label="Date of Birth"
-									name="EmployeeDOB"
-									value={EmployeeDOB || ""}
-									onChange={this.handleChange}
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeAddress"
-									value={EmployeeAddress || ""}
-									onChange={this.handleChange}
-									label="Employee Address"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeePAddress"
-									value={EmployeePAddress || ""}
-									onChange={this.handleChange}
-									label="Permanent Address"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeContact"
-									value={EmployeeContact || ""}
-									onChange={this.handleChange}
-									label="Employee Contact"
-									required
-								/>
-								<FormInput
-									type="email"
-									name="EmployeeEmail"
-									value={EmployeeEmail || ""}
-									onChange={this.handleChange}
-									label="Email Address"
-									required
 								/>
 							</div>
 						</div>
-					</div>
 
-					<div
-						className={
-							TabtoggleState === 2 ? "content  active-content" : "content"
-						}
-					>
-						<h3 className="tab-title">Joining Information </h3>
-						<div className="tab-container">
-							<Select
-								className="form-dropdown"
-								placeholder="Select Department"
-								value={
-									options.Department.find(
-										(obj) => obj.value === EmployeeDepartment,
-									) || ""
-								} // set selected value
-								options={options.Department} // set list of the data
-								onChange={(e) => {
-									this.setState({ EmployeeDepartment: e.value });
-								}} // assign onChange function
-							/>
-							<Select
-								className="form-dropdown"
-								placeholder="Active or De-active"
-								value={
-									options.Active.find(
-										(obj) => obj.value === EmployeeStatusActive,
-									) || ""
-								} // set selected value
-								options={options.Active} // set list of the data
-								onChange={(e) => {
-									this.setState({ EmployeeStatusActive: e.value });
-								}} // assign onChange function
-							/>
-							<FormInput
-								type="date"
-								name="EmployeeDateofJoining"
-								value={EmployeeDateofJoining || ""}
-								onChange={this.handleChange}
-								label="Date of Joining"
-								required
-							/>
-							<FormInput
-								type="date"
-								name="EmployeeDateofLeaving"
-								value={EmployeeDateofLeaving || ""}
-								onChange={this.handleChange}
-								label="Date of Leaving"
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeESICNo"
-								value={EmployeeESICNo || ""}
-								onChange={this.handleChange}
-								label="ESIC No"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeUANNo"
-								value={EmployeeUANNo || ""}
-								onChange={this.handleChange}
-								label="UAN No"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeBasicSalary"
-								value={EmployeeBasicSalary || ""}
-								onChange={this.handleChange}
-								label="Basic Salary"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeOnrollContractor"
-								value={EmployeeOnrollContractor || ""}
-								onChange={this.handleChange}
-								label="Onroll or Contractor"
-								required
-							/>
-							<Select
-								className="form-dropdown"
-								placeholder="ESIC Calculation"
-								value={
-									options.ESIC.find((obj) => obj.value === ESICCalculation) ||
-									""
-								} // set selected value
-								options={options.ESIC} // set list of the data
-								onChange={(e) => {
-									this.setState({ ESICCalculation: e.value });
-								}} // assign onChange function
-							/>
-						</div>
-					</div>
-
-					<div
-						className={
-							TabtoggleState === 3 ? "content  active-content" : "content"
-						}
-					>
-						<h3 className="tab-title">Bank Information </h3>
-						<div className="tab-container">
-							<FormInput
-								type="text"
-								name="EmployeePANNo"
-								value={EmployeePANNo || ""}
-								onChange={this.handleChange}
-								label="PAN No"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeAadharNo"
-								value={EmployeeAadharNo || ""}
-								onChange={this.handleChange}
-								label="Aadhar No"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeBankName"
-								value={EmployeeBankName || ""}
-								onChange={this.handleChange}
-								label="Bank Name"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeBankIFSCCode"
-								value={EmployeeBankIFSCCode || ""}
-								onChange={this.handleChange}
-								label="IFSC Code"
-								required
-							/>
-							<FormInput
-								type="text"
-								name="EmployeeAccountNo"
-								value={EmployeeAccountNo || ""}
-								onChange={this.handleChange}
-								label="Account No"
-								required
-							/>
+						<div
+							className={
+								TabtoggleState === 3 ? "content  active-content" : "content"
+							}
+						>
+							<h3 className="tab-title">Bank Information </h3>
+							<div className="tab-container">
+								<FormInput
+									type="text"
+									name="EmployeePANNo"
+									value={EmployeePANNo || ""}
+									onChange={this.handleChange}
+									label="PAN No"
+									required
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeAadharNo"
+									value={EmployeeAadharNo || ""}
+									onChange={this.handleChange}
+									label="Aadhar No"
+									required
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeBankName"
+									value={EmployeeBankName || ""}
+									onChange={this.handleChange}
+									label="Bank Name"
+									required
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeBankIFSCCode"
+									value={EmployeeBankIFSCCode || ""}
+									onChange={this.handleChange}
+									label="IFSC Code"
+									required
+								/>
+								<FormInput
+									type="text"
+									name="EmployeeAccountNo"
+									value={EmployeeAccountNo || ""}
+									onChange={this.handleChange}
+									label="Account No"
+									required
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

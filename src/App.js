@@ -50,7 +50,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="main-container">
+			<div className="root-container">
 				<Header />
 				<div className="main-section">
 					<Switch>

@@ -1,38 +1,37 @@
 .form-page {
 	display: flex;
-	width: 100vw;
-
+	background-color: var(--form-page-background);
 	.leftside-menu-block {
 		background-color: var(--left-side-menu-block);
 		position: sticky;
 		top: 0;
 		left: 0;
-		z-index: 4;
-		background-color: rgb(0, 0, 0);
+		z-index: 10;
 		padding: 2vh 1vw;
-		height: 100vh;
+		height: 90vh;
 	}
 
-	.rightside-main-section {
+	.right-side-main-section {
 		flex: 1 1 auto;
-		display: flex;
-		align-items: center;
+		/* display: flex;
+		 align-items: center;
 		flex-direction: column;
+		padding: 0 2rem; */
 
-		background-color: rgb(230, 230, 230);
-		padding: 0 2rem;
-		margin-bottom: 2.5vw;
-
-		.title {
-			padding: 1rem 0;
-			display: flex;
-			justify-content: center;
+		.section-title {
+			padding: 0.5rem 1rem;
+		}
+		.section-subtitle {
+			padding: 0 1rem;
 		}
 		.form-container {
 			display: flex;
 			flex-direction: column;
-			width: 80vw;
-
+			padding: 2vh 2vw;
+			.dropdown-menu {
+				width: 400px;
+				margin: 15px 5px;
+			}
 			.bloc-tabs {
 				display: flex;
 				background: #ffffff;
@@ -44,16 +43,16 @@
 					background: rgb(0, 0, 0);
 					cursor: pointer;
 					border-bottom: 5px solid rgba(240, 240, 240, 0.555);
-					color: rgb(255, 255, 255);
+					color: var(--primary-color-m);
 
 					outline: none;
 				}
 				.tabs:not(:last-child) {
-					border-right: 2px solid rgb(250, 250, 250);
+					border-right: 2px solid var(--primary-color-m);
 				}
 
 				.active-tabs {
-					background: rgb(255, 255, 255);
+					background: var(--primary-color-m);
 					border-bottom: 1px solid transparent;
 					border-left: 1px solid rgb(0, 0, 0);
 					border-right: 1px solid rgb(0, 0, 0);
@@ -61,10 +60,8 @@
 				}
 			}
 			.content-tabs {
-				flex: 1;
-
 				.content {
-					background: rgb(255, 255, 255);
+					background: var(--primary-color-m);
 					padding: 20px;
 					display: none;
 					flex-direction: column;
@@ -85,7 +82,7 @@
 					margin: 0 15px;
 					max-height: 25em;
 					width: 100%;
-					background-color: rgb(255, 255, 255);
+					background-color: var(--primary-color-m);
 
 					.form-dropdown {
 						background: none;
@@ -122,7 +119,10 @@
 				flex-direction: column;
 				flex-wrap: wrap;
 				height: 60vh;
+				width: 80%;
 				align-content: flex-start;
+				background-color: var(--primary-color-m);
+
 				.form-dropdown {
 					width: 18rem;
 					margin: 0.5rem 0;
@@ -130,7 +130,7 @@
 			}
 			.image-form-page {
 				display: flex;
-				background-color: white;
+				background-color: var(--primary-color-m);
 				.image-container {
 					width: 12vw;
 					/* height: 70vh; */
@@ -139,8 +139,6 @@
 					margin-right: 1rem;
 
 					input {
-						background-color: chocolate;
-						color: cornsilk;
 						font-size: 0.7rem;
 					}
 					.imgPreview {
@@ -154,7 +152,7 @@
 							object-fit: cover;
 						}
 
-						background-color: rgb(245, 245, 245);
+						background-color: var(--primary-color-m);
 					}
 				}
 			}

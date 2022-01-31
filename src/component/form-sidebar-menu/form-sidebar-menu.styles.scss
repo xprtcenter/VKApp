@@ -1,58 +1,69 @@
 .leftside-menu-block {
-	.sidebar-menu {
-		/* 		padding: 5px 0 5px 15px; */
-
-		cursor: pointer;
-		background-color: rgb(39, 37, 37);
-
-		&:hover {
-			background-color: var(--primary-color);
-			transition: background-color 0.5s;
-			color: black;
-		}
-		.icon-container {
-			padding: 0 5px;
-		}
-		.side-menu-text {
-			white-space: nowrap;
-			font-size: calc(0.5em + 1vh);
-			margin-right: 0.8em;
-		}
-		.close {
-			display: none;
-		}
-		.form-side-list {
-			/* 			margin: 5px 0 5px;*/
-			display: flex;
-			color: var(--primary-color-m);
-			align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-radius: 0 15px 15px 0;
+	.side-menu-text-block {
+		.sidebar-menu {
+			z-index: 10;
+			cursor: pointer;
+			border-radius: 5px;
 			&:hover {
-				color: black;
+				background-color: var(--primary-color);
+				color: var(--secondary-color);
 			}
 			.icon-container {
-				svg {
-					width: 2em;
-					height: 2em;
-					margin: 0.3em 0.3em;
+				padding: 0 0.2rem;
+			}
+			.side-menu-text {
+				white-space: nowrap;
+				font-size: calc(0.5rem + 1vh);
+				margin-right: 0.8rem;
+			}
+			.close {
+				display: none;
+			}
+			.form-side-list {
+				display: flex;
+				color: var(--primary-color-m);
+				align-items: center;
+				&:hover {
+					color: var(--secondary-color);
 				}
+				.icon-container {
+					svg {
+						width: 2em;
+						height: 2em;
+						margin: 0.3em 0.3em;
+					}
+				}
+			}
+		}
+		.side-active {
+			background-color: var(--primary-color);
+			.form-side-list {
+				color: var(--secondary-color);
 			}
 		}
 	}
 	.sidebar-close-button {
 		cursor: pointer;
-		position: fixed;
+		position: sticky;
 		bottom: 5vh;
+		align-self: center;
 		.right-button {
-			height: 3em;
-			width: 3em;
-			background-color: honeydew;
+			height: 2.5rem;
+			width: 2.5rem;
+			background-color: var(--primary-color-m);
 			border-radius: 50%;
 			transform: rotate(180deg);
+			transition: transform 2s;
 		}
 	}
 	.close {
 		.right-button {
 			transform: rotate(1800deg);
+			transition: transform 2s;
 		}
 	}
 }

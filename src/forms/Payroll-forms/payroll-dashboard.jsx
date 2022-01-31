@@ -3,11 +3,10 @@ import CustomHomeCard from "../../component/home-page-card/home-page-card.compon
 import { payrollDashboardOption } from "./payroll-dashboard-data";
 const PayrollDashboardPage = () => {
 	return (
-		<>
-			<h1 className="title">Payroll Dashboard</h1>
-
-			<CustomHomeCard data={payrollDashboardOption.name} />
-		</>
+		<CustomHomeCard
+			data={payrollDashboardOption.name}
+			title={payrollDashboardOption.title}
+		/>
 	);
 };
 

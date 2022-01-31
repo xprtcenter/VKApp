@@ -1,6 +1,7 @@
 import React from "react";
 import FormInput from "../../component/form-input/form-input.component";
 import CustomButton from "../../component/custom-button/custom-button.component";
+import avatar from "../../assets/avatar.png";
 
 import "./sme-reg.styles.scss";
 import { firestore } from "../../firebase/firebase.utils";
@@ -10,6 +11,9 @@ class ContractorEmployeeEntry extends React.Component {
 		super(props);
 
 		this.state = {
+			EmployeeImagePreviewUrl: "",
+			EmployeeImageStatus: "",
+			EmployeeFile: "",
 			CompanyName: "",
 			email: "",
 			EmployeeName: "",
@@ -92,6 +96,9 @@ class ContractorEmployeeEntry extends React.Component {
 			CompanyName,
 			EmployeeName,
 			GaurdianName,
+			EmployeeImagePreviewUrl,
+			EmployeeImageStatus,
+			EmployeeFile,
 			Age,
 			Gender,
 			PAddress,
@@ -108,12 +115,30 @@ class ContractorEmployeeEntry extends React.Component {
 		} = this.state;
 
 		return (
-			<div className="form-main-container">
+			<form className="form-container" onSubmit={this.handleSubmit}>
 				<h2 className="title">Company Employee Registration form</h2>
-				<span>Register your Company Employee for Health Checkup.</span>
 
-				<form onSubmit={this.handleSubmit}>
-					<div className="sme-reg-form">
+				<div className="image-form-page">
+					<div className="image-container">
+						<div className="imgPreview">
+							{EmployeeImagePreviewUrl ? (
+								<img src={EmployeeImagePreviewUrl} alt="" />
+							) : (
+								<img src={avatar} alt="" />
+							)}
+						</div>
+						<div className="status">
+							<h4>{EmployeeImageStatus}</h4>
+						</div>
+						<input type="file" onChange={this.handleImage} />
+						<div
+							className="button-upload"
+							onClick={() => this.handleImageUpload(EmployeeFile)}
+						>
+							Upload
+						</div>
+					</div>
+					<div className="tab-container">
 						<FormInput
 							type="text"
 							name="CompanyName"
@@ -250,10 +275,12 @@ class ContractorEmployeeEntry extends React.Component {
 							label="Supervisor Mobile"
 						/>
 					</div>
-					<CustomButton type="submit">SUBMIT</CustomButton>
-				</form>
-				<div className="upload-btn"> Upload by Excel</div>
-			</div>
+				</div>
+
+				<CustomButton type="submit" sizefix>
+					SUBMIT
+				</CustomButton>
+			</form>
 		);
 	}
 }

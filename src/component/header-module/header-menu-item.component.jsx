@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { activeHeaderButton } from "../../redux/menu/menu.action";
 import { selectActiveHeader } from "../../redux/menu/menu.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import { withRouter } from "react-router-dom";
 
@@ -14,6 +15,7 @@ const HeaderMenuItem = ({
 	match,
 	activeHeaderButton,
 	activeheader,
+	currentUser,
 }) => {
 	return (
 		<div
@@ -34,6 +36,7 @@ const HeaderMenuItem = ({
 
 const mapStateToProps = createStructuredSelector({
 	activeheader: selectActiveHeader,
+	currentUser: selectCurrentUser,
 });
 const mapDispatchToProps = (dispatch) => ({
 	activeHeaderButton: (url) => dispatch(activeHeaderButton(url)),
