@@ -72,31 +72,31 @@ class SignUp extends React.Component {
 				<span>Sign up with your email and password</span>
 
 				<form className="sign-up-form" onSubmit={this.handleSubmit}>
-					<div className="radio">
+					<div className="radio-container">
 						<div className="select-option">Selected option is : {userType}</div>
 
-						<label>
-							<input
-								type="radio"
-								value="Hospital"
-								checked={userType === "Hospital"}
-								onChange={this.radioChecked}
-								required
-							/>
-							Hospital
-						</label>
-					</div>
-					<div className="radio">
-						<label>
-							<input
-								type="radio"
-								value="Vender"
-								checked={userType === "Vender"}
-								onChange={this.radioChecked}
-								required
-							/>
-							Vender
-						</label>
+						<div className="radio">
+							<label>
+								<input
+									type="radio"
+									value="Hospital"
+									checked={userType === "Hospital"}
+									onChange={this.radioChecked}
+									required
+								/>
+								Hospital
+							</label>
+							<label>
+								<input
+									type="radio"
+									value="Vender"
+									checked={userType === "Vender"}
+									onChange={this.radioChecked}
+									required
+								/>
+								Vender
+							</label>
+						</div>
 					</div>
 
 					<FormInput

@@ -17,6 +17,7 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 import SmeHomePage from "./pages/smePages/smeHomePage.component";
 import UserProfile from "./pages/user/user-profile.component";
 import PayrollHomePage from "./pages/payrollPages/payrollHomePage.component";
+import XrayImages from "./component/x-ray-images/xray-images.component";
 
 /****************************************************  Header Footer Component  ************************************************************/
 import Header from "./component/header/header.component";
@@ -109,6 +110,7 @@ class App extends Component {
 								)
 							}
 						/>
+						<Route exact path="/xray" component={XrayImages} />
 					</Switch>
 				</div>
 				<Footer />

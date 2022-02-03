@@ -31,6 +31,8 @@ const Header = ({
 	activeHeaderButton,
 }) => {
 	//console.log("Test CurrentUser from header", currentUser.photoURL);
+	/* alert(`Inside Header ${currentUser}`); */
+
 	return (
 		<div className="main-header">
 			<div className="header1">
@@ -55,7 +57,9 @@ const Header = ({
 				<div className="nav-options-container .nav__menu">
 					{!menuhidden ? (
 						<div className="header-menu">
-							<HeaderModules />
+							{currentUser ? (
+								<HeaderModules userrole={currentUser.role} />
+							) : null}
 						</div>
 					) : null}
 					<div className="menu-button-icon" onClick={toggleMenuHidden}>

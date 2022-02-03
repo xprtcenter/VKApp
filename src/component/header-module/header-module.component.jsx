@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 import HeaderMenuItem from "./header-menu-item.component";
 import headerdata from "../header/headerdata";
 
-class HeaderModules extends React.Component {
-	constructor(currentUser) {
-		super();
+const HeaderModules = ({ userrole = [] }) => {
+	const roleResult = userrole.map((role) =>
+		headerdata.sections.filter((value) => {
+			return value.title === role;
+		}),
+	);
 
-		this.state = {
-			headerdata,
-		};
-	}
+	console.log("New array check", roleResult);
+	/* ****************************************************************************************  */
+	const newarray = roleResult.reduce(function (pre, cur) {
+		return pre.concat(cur);
+	}, []);
 
-	render() {
-		return (
-			<React.Fragment>
-				{this.state.headerdata.sections.map(({ id, ...otherSectionProps }) => (
-					<HeaderMenuItem key={id} {...otherSectionProps} />
-				))}
-			</React.Fragment>
-		);
-	}
-}
+	console.log("New array check", newarray);
+	/* ****************************************************************************************  */
+	return (
+		<React.Fragment>
+			{newarray.map(({ id, ...otherSectionProps }) => (
+				<HeaderMenuItem key={id} {...otherSectionProps} />
+			))}
+		</React.Fragment>
+	);
+};
 
 export default HeaderModules;

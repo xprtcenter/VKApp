@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
-import { IoNotificationsSharp } from "react-icons/io5";
+import { BiBell } from "react-icons/bi";
 
 import { toggleCartHidden } from "../../redux/cart/cart.action";
 import "./card-icon.styles.scss";
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => (
 	<div className="cart-icon" onClick={toggleCartHidden}>
-		<IoNotificationsSharp className="shopping-icon" />
+		<BiBell className="shopping-icon" />
 		<span className="item-count">{itemCount}</span>
 	</div>
 );

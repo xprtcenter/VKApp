@@ -24,7 +24,7 @@ const CustomTable = ({ data, columns, tableTitle }) => {
 		};
 
 		getData();
-	}, []);
+	}, [data]);
 
 	return (
 		<div className="custom-table">
