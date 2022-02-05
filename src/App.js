@@ -18,6 +18,7 @@ import SmeHomePage from "./pages/smePages/smeHomePage.component";
 import UserProfile from "./pages/user/user-profile.component";
 import PayrollHomePage from "./pages/payrollPages/payrollHomePage.component";
 import XrayImages from "./component/x-ray-images/xray-images.component";
+import ModuleCreation from "./forms/Admin-form/AppMasters/ModuleCreation.component";
 
 /****************************************************  Header Footer Component  ************************************************************/
 import Header from "./component/header/header.component";
@@ -111,6 +112,7 @@ class App extends Component {
 							}
 						/>
 						<Route exact path="/xray" component={XrayImages} />
+						<Route exact path="/modulecreation" component={ModuleCreation} />
 					</Switch>
 				</div>
 				<Footer />

@@ -1,22 +1,22 @@
 import { firestore } from "../../firebase/firebase.utils";
 
-const db = firestore.collection("moduleAndPageMaster");
+const Moduledb = firestore.collection("moduleAndPageMaster");
 
 class ModuleDataService {
 	getAll() {
-		return db;
+		return Moduledb;
 	}
 
 	create(ModuleData) {
-		return db.add(ModuleData);
+		return Moduledb.add(ModuleData);
 	}
 
 	update(id, value) {
-		return db.doc(id).update(value);
+		return Moduledb.doc(id).update(value);
 	}
 
 	delete(id) {
-		return db.doc(id).delete();
+		return Moduledb.doc(id).delete();
 	}
 }
 

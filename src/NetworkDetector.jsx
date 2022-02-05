@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+/* import React, { Component } from "react";
 
 export default function (ComposedComponent) {
 	class NetworkDetector extends Component {
@@ -54,3 +54,4 @@ export default function (ComposedComponent) {
 
 	return NetworkDetector;
 }
+ */

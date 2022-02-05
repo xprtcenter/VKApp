@@ -1,91 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import FormInput from "../../../component/form-input/form-input.component";
 import CustomButton from "../../../component/custom-button/custom-button.component";
 import ModuleDataService from "../module-service";
+import "../../../component/formPage/formPage.styles.scss";
 
-class ModuleCreation extends React.Component {
-	constructor(props) {
-		super(props);
+const ModuleCreation = () => {
+	const initialstate = {
+		ModuleName: "",
+		imageUrl: "",
+		linkUrl: "",
+	};
+	const [data, setData] = useState(initialstate);
 
-		this.state = {
-			ModuleName: "",
-			MPath: "",
-			icon: "",
-		};
-	}
-
-	handleSubmit = async (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		let ModuleData = {
-			ModuleName: this.state.ModuleName,
-			MPath: this.state.MPath,
-			icon: this.state.icon,
-		};
-
-		ModuleDataService.create(ModuleData)
+		ModuleDataService.create(data)
 			.then(() => {
 				alert("Created new item successfully!");
-				this.setState({
-					ModuleName: "",
-					MPath: "",
-					icon: "",
-				});
+				setData(initialstate);
 			})
 			.catch((e) => {
 				console.log(e);
 			});
 	};
 
-	handleChange = (event) => {
+	const handleChange = (event) => {
 		const { name, value } = event.target;
 
-		this.setState({ [name]: value });
+		setData({ ...data, [name]: value });
 	};
-
-	render() {
-		const { ModuleName, MPath, icon } = this.state;
-
-		return (
-			<div className="form-main-container">
+	const { ModuleName, imageUrl, linkUrl } = data;
+	return (
+		<div className="form-page">
+			<div className="form-container">
 				<h2 className="title">Module Registration form</h2>
 				<span>Register your module.</span>
 
-				<form
-					className="contractor-registration-form"
-					onSubmit={this.handleSubmit}
-				>
+				<form className="base-form" onSubmit={handleSubmit}>
 					<FormInput
 						type="text"
 						name="ModuleName"
 						value={ModuleName}
-						onChange={this.handleChange}
+						onChange={handleChange}
 						label="Module Name"
 						required
 					/>
 
 					<FormInput
 						type="text"
-						name="MPath"
-						value={MPath}
-						onChange={this.handleChange}
+						name="linkUrl"
+						value={linkUrl}
+						onChange={handleChange}
 						label="Module Path"
 						required
 					/>
 
 					<FormInput
 						type="text"
-						name="icon"
-						value={icon}
-						onChange={this.handleChange}
-						label="Icon"
+						name="imageUrl"
+						value={imageUrl}
+						onChange={handleChange}
+						label="Image Url"
 						required
 					/>
 
 					<CustomButton type="submit">SUBMIT</CustomButton>
 				</form>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 export default ModuleCreation;
