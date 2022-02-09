@@ -6,11 +6,13 @@ import PayrollEmpList from "../../forms/Payroll-forms/payroll-emp-list.component
 import PayrollDashboardPage from "../../forms/Payroll-forms/payroll-dashboard";
 import PayrollDeductionEntry from "../../forms/Payroll-forms/payroll-deduction-entry.component";
 import PayrollSalaryCaculationMaster from "../../forms/Payroll-forms/payroll-salary-calculation-master";
+import PayrollReportPage from "../../forms/Payroll-forms/payroll-reports/payroll-report-page";
 
 import SMEDashboardPage from "../../forms/sme-forms/sme-dashboard";
 import ContractorMaster from "../../forms/sme-forms/contractor-master.component";
 import ContractorEmployeeEntry from "../../forms/sme-forms/contractor-employee-entry.component";
 import ContractorMasterList from "../../forms/sme-forms/contractor-master-list.component";
+import ContractorPayment from "../../forms/sme-forms/contractor-payment-details.component";
 
 const RightFormPageContainer = () => {
 	return (
@@ -46,11 +48,14 @@ const RightFormPageContainer = () => {
 					path="/payroll/salentry"
 					component={PayrollDeductionEntry}
 				/>
+				<Route exact path="/payroll" component={PayrollDashboardPage} />
 				<Route
 					exact
 					path="/payroll/salcalcmaster"
 					component={PayrollSalaryCaculationMaster}
 				/>
+				<Route exact path="/payroll/payreports" component={PayrollReportPage} />
+
 				<Route exact path="/sme/smeconmaster" component={ContractorMaster} />
 				<Route
 					exact
@@ -58,7 +63,7 @@ const RightFormPageContainer = () => {
 					component={ContractorEmployeeEntry}
 				/>
 				<Route exact path="/sme/smecontlist" component={ContractorMasterList} />
-				<Route exact path="/payroll" component={PayrollDashboardPage} />
+				<Route exact path="/sme/smepaydetails" component={ContractorPayment} />
 				<Route exact path="/sme" component={SMEDashboardPage} />
 			</Switch>
 		</div>

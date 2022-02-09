@@ -2,7 +2,7 @@
   "name": "complete-react-course",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://xprtcenter.github.io/VKApp",
+  "homepage": "https://xprtcenter.github.io/HospApp",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -15,7 +15,7 @@
     "material-table": "^1.69.3",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
+    "react": "^16.13.1",
     "react-countup": "^6.1.1",
     "react-dom": "^16.8.6",
     "react-icons": "^4.3.1",

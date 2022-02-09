@@ -96,7 +96,13 @@
 					}
 				}
 			}
+			.status {
+				font-size: 0.8rem;
+				background-color: var(--secondary-color);
+				color: var(--primary-color-m);
 
+				text-align: center;
+			}
 			.button-upload {
 				align-self: center;
 				padding: 5px;

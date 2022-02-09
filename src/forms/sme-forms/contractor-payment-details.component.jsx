@@ -18,7 +18,10 @@ class ContractorPayment extends React.Component {
 			HCType: "",
 		};
 	}
-
+	myOptions = [
+		{ value: "Yes", label: "Yes" },
+		{ value: "No", label: "No" },
+	];
 	handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -57,7 +60,7 @@ class ContractorPayment extends React.Component {
 		this.setState({ [name]: value });
 	};
 
-	render() {
+	render(myOptions) {
 		const {
 			bankName,
 			accountNo,
@@ -140,8 +143,7 @@ class ContractorPayment extends React.Component {
 						value={HCType}
 						onChange={this.handleChange}
 						label="Health Checkup Type"
-						options={myOptions}
-						defaultValue={myOptions[1]}
+						options={{}}
 					/>
 					<CustomButton type="submit">SUBMIT</CustomButton>
 				</form>

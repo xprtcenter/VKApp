@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./form-sidebar-menu.styles.scss";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -22,10 +22,12 @@ const FormSidebarMenu = ({
 	sideactive,
 	sideMenuActive,
 }) => {
-	tippy(`#${menuUrl}`, {
-		content: menuName,
-		placement: "right",
-	});
+	useEffect(() => {
+		tippy(`#${menuUrl}`, {
+			content: menuName,
+			placement: "right",
+		});
+	}, []);
 
 	return (
 		<div

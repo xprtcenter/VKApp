@@ -28,6 +28,7 @@ const initialState = {
 	CompanyLogoStatus: "Not Upload",
 	mydata: [],
 	fillStatus: 1,
+	uploadstatus: 0,
 };
 class PayrollMaster extends React.Component {
 	constructor(props) {
@@ -123,7 +124,12 @@ class PayrollMaster extends React.Component {
 
 			uploadTask.on(
 				"state_changes",
-				(snapshot) => {},
+				(snapshot) => {
+					var progress =
+						(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+					var rounded = Math.round(progress * 10) / 10;
+					this.setState({ uploadstatus: rounded });
+				},
 				(error) => {
 					console.log(error);
 				},
@@ -190,26 +196,39 @@ class PayrollMaster extends React.Component {
 	handleImage = (e) => {
 		e.preventDefault();
 
+		/* let CompanyLogoFile = e.target.files[0]; */
 		let CompanyLogoFile = e.target.files[0];
-
-		if (CompanyLogoFile !== undefined) {
-			let reader = new FileReader();
-			reader.onloadend = () => {
-				this.setState({
-					CompanyLogoFile: CompanyLogoFile,
-					CompanyLogoPreviewUrl: reader.result,
-				});
-			};
-
-			reader.readAsDataURL(CompanyLogoFile);
-		} else {
+		const filesize = CompanyLogoFile.size / 1024 / 1024;
+		if (filesize > 0.5) {
+			alert(
+				"File size is greater than 500 kb. Please select file between 20kb to 500 kb",
+			);
 			this.setState({
 				CompanyLogoFile: "",
 				CompanyLogoPreviewUrl: "",
 				CompanyLogo: "",
 				CompanyLogoStatus: "Not Upload",
 			});
-			alert("Please select logo");
+		} else {
+			if (CompanyLogoFile !== undefined) {
+				let reader = new FileReader();
+				reader.onloadend = () => {
+					this.setState({
+						CompanyLogoFile: CompanyLogoFile,
+						CompanyLogoPreviewUrl: reader.result,
+					});
+				};
+
+				reader.readAsDataURL(CompanyLogoFile);
+			} else {
+				this.setState({
+					CompanyLogoFile: "",
+					CompanyLogoPreviewUrl: "",
+					CompanyLogo: "",
+					CompanyLogoStatus: "Not Upload",
+				});
+				alert("Please select logo");
+			}
 		}
 	};
 
@@ -236,6 +255,7 @@ class PayrollMaster extends React.Component {
 			EmployerCompanyName,
 			CompanyLogoStatus,
 			mydata,
+			uploadstatus,
 		} = this.state;
 
 		return (
@@ -253,9 +273,17 @@ class PayrollMaster extends React.Component {
 								)}
 							</div>
 							<div className="status">
-								<h4>{CompanyLogoStatus}</h4>
+								{uploadstatus === 0 || uploadstatus === 100 ? (
+									<span>{CompanyLogoStatus}</span>
+								) : (
+									<span>Uploading...{uploadstatus}</span>
+								)}
 							</div>
-							<input type="file" onChange={this.handleImage} />
+							<input
+								type="file"
+								onChange={this.handleImage}
+								accept="image/png, image/jpeg"
+							/>
 							<div
 								className="button-upload"
 								onClick={() => this.handleImageUpload(CompanyLogoFile)}

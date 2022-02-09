@@ -1,76 +1,280 @@
-import React from "react";
+import React, { useState } from "react";
 import FormInput from "../../component/form-input/form-input.component";
 import CustomButton from "../../component/custom-button/custom-button.component";
-
+import UserDataServices from "./user-services";
 import "./user-profile.styles.scss";
+import { storage } from "../../firebase/firebase.utils";
 
-class UserProfile extends React.Component {
-	constructor(props) {
-		super(props);
+const UserProfile = () => {
+	/* 
+	const initialstate = {
+		DisplayName: "",
+		EmailId: "",
+		password: "",
+		confirmPassword: "",
+		profilepicUrl: "",
+		profilepicPreviewUrl: "",
+		profilePicStatus: "",
+		profilePicFile: "",
+		gender: "",
+		MobileNo: "",
+		State: "",
+		Country: "",
+		Permission: [],
+	};
+	const [data, setData] = useState(initialstate);
 
-		this.state = {};
-	}
-
-	handleSubmit = async (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		/* const db = firestore
-			.collection("payrollData")
-			.doc("payrollDeduction")
-			.collection("payrollDeductionEntry");
-
-		let sData = {
-			displayName: this.state.employeeName,
-			month: this.state.month,
-		};
-
-		db.add(sData)
+		UserDataServices.create(data)
 			.then(() => {
-				console.log("Created new item successfully!");
-				this.setState({
-					employeeName: "",
-					month: "",
-				});
+				alert("Created new item successfully!");
+				setData(initialstate);
 			})
 			.catch((e) => {
 				console.log(e);
-			}); */
+			});
 	};
-	handleChange = (event) => {
+
+	const handleChange = (event) => {
 		const { name, value } = event.target;
 
-		this.setState({ [name]: value });
+		setData({ ...data, [name]: value });
 	};
-	render() {
-		return (
-			<>
-				<h2 className="text-header">Profile Settings</h2>
-				<form className="custom-form" onSubmit={this.handleSubmit}>
-					<FormInput type="text" label="Name" value="" />
 
-					<FormInput type="text" label="Mobile Number" value="" />
+	const handleImage = (e) => {
+		e.preventDefault();
 
-					<FormInput type="text" label="Address" value="" />
+		let profilePicFile = e.target.files[0];
 
-					<FormInput type="text" label="Postcode" value="" />
+		if (profilePicFile !== undefined) {
+			let reader = new FileReader();
+			reader.onloadend = () => {
+				this.setState({
+					profilePicFile: profilePicFile,
+					profilepicPreviewUrl: reader.result,
+				});
+			};
 
-					<FormInput type="text" label="State" value="" />
+			reader.readAsDataURL(profilePicFile);
+		} else {
+			this.setState({
+				profilePicFile: "",
+				profilepicPreviewUrl: "",
+				CompanyLogo: "",
+				profilePicStatus: "Not Upload",
+			});
+			alert("Please select logo");
+		}
+	};
 
-					<FormInput type="text" label="Area" value="" />
+	const handleImageUpload = (image) => {
+		if (image) {
+			const uploadTask = storage
+				.ref(`ProfilePicImages/${image.name}`)
+				.put(image);
 
-					<FormInput type="text" label="Email ID" value="" />
+			uploadTask.on(
+				"state_changes",
+				(snapshot) => {},
+				(error) => {
+					console.log(error);
+				},
+				() => {
+					storage
+						.ref("ProfilePicImages")
+						.child(image.name)
+						.getDownloadURL()
+						.then((url) => {
+							console.log(url);
+							this.setState({
+								CompanyLogo: url,
+								profilePicStatus: "Upload Successfully",
+							});
+						});
+				},
+			);
+		} else {
+			alert("Please Select your logo");
+		}
+	};
+	const {
+		DisplayName,
+		EmailId,
+		password,
+		confirmPassword,
+		profilepicUrl,
+		profilepicPreviewUrl,
+		profilePicStatus,
+		profilePicFile,
+		gender,
+		MobileNo,
+		State,
+		Country,
+	} = data;
+	return (
+		<div className="form-container">
+			<form onSubmit={this.handleSubmit}>
+				<h2 className="section-title">Employer Registration form</h2>
 
-					<FormInput type="text" label="Education" value="" />
+				<div className="image-form-page">
+					<div className="image-container">
+						<div className="imgPreview">
+							{profilepicPreviewUrl ? (
+								<img src={profilepicPreviewUrl} alt="" />
+							) : (
+								<img src={comlogo} alt="" />
+							)}
+						</div>
+						<div className="status">
+							<h4>{profilePicStatus}</h4>
+						</div>
+						<input type="file" onChange={handleImage} />
+						<div
+							className="button-upload"
+							onClick={() => handleImageUpload(profilePicFile)}
+						>
+							Upload
+						</div>
+					</div>
 
-					<FormInput type="text" label="Country" value="" />
+					<div className="tab-container">
+						<FormInput
+							type="number"
+							name="EmployerCode"
+							value={EmployerCode || ""}
+							onChange={this.handleChange}
+							label="Employer Code"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="EmployerCompanyName"
+							value={EmployerCompanyName || ""}
+							onChange={this.handleChange}
+							label="Company Name"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="EmployerName"
+							value={EmployerName || ""}
+							onChange={this.handleChange}
+							label="Employer Name"
+							required
+						/>
 
-					<FormInput type="text" value="" label="State/Region" />
+						<FormInput
+							type="text"
+							name="EmployerAddress"
+							value={EmployerAddress || ""}
+							onChange={this.handleChange}
+							label="Employer Address"
+							required
+						/>
 
-					<CustomButton>Save Profile</CustomButton>
-				</form>
-			</>
-		);
-	}
-}
+						<FormInput
+							type="text"
+							name="EmployerContact"
+							value={EmployerContact || ""}
+							onChange={this.handleChange}
+							label="Employer Contact"
+							required
+						/>
+						<FormInput
+							type="email"
+							name="EmployerEmail"
+							value={EmployerEmail || ""}
+							onChange={this.handleChange}
+							label="Email Address"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="EmployerAccount"
+							value={EmployerAccount || ""}
+							onChange={this.handleChange}
+							label="Bank Account No"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="EmployerBank"
+							value={EmployerBank || ""}
+							onChange={this.handleChange}
+							label="Bank Name"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="EmployerIFSC"
+							value={EmployerIFSC || ""}
+							onChange={this.handleChange}
+							label="IFSC Code"
+							required
+						/>
+						<FormInput
+							type="text"
+							name="EmployerPAN"
+							value={EmployerPAN || ""}
+							onChange={this.handleChange}
+							label="PAN No"
+							required
+						/>
+					</div>
+				</div>
+				<CustomButton type="submit" sizefix>
+					SUBMIT
+				</CustomButton>
+			</form>
+
+			<h2 className="section-title">Employer List</h2>
+
+			<table className="table-page">
+				<thead>
+					<tr className="table-header">
+						<th className="th1">Employer Code</th>
+						<th className="th2">Company Logo</th>
+						<th className="th3">Employer Name</th>
+						<th className="th4">Email</th>
+						<th className="th5">Company Name</th>
+						<th className="th6">Address</th>
+						<th className="th7">Contact</th>
+						<th className="th8">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{mydata.map((item) => (
+						<tr className="table-data-row">
+							<td className="emp-code">{item.EmployerCode}</td>
+							<td className="table-image-container">
+								<img
+									src={item.CompanyLogo ? item.CompanyLogo : comlogo}
+									alt="dummyimg"
+								/>
+							</td>
+							<td>{item.EmployerName}</td>
+							<td>{item.EmployerEmail}</td>
+							<td>{item.PayrollCompanyName}</td>
+							<td>{item.EmployerAddress}</td>
+							<td>{item.EmployerContact}</td>
+							<td>
+								<button className="btn btn-view">View</button>
+
+								<Link to={`/payroll/paymaster/${item.id}`}>
+									<button className="btn btn-edit">Edit</button>
+								</Link>
+
+								<button className="btn btn-delete">Delete</button>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div> 
+	);
+	*/
+};
 
 export default UserProfile;
