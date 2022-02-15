@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import HeaderMenuItem from "./header-menu-item.component";
 import headerdata from "../header/headerdata";

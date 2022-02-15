@@ -4,6 +4,7 @@ import PayrollEmpRegMaster from "../../forms/Payroll-forms/payroll-employee-regi
 import PayrollMaster from "../../forms/Payroll-forms/payroll-master.component";
 import PayrollEmpList from "../../forms/Payroll-forms/payroll-emp-list.component";
 import PayrollDashboardPage from "../../forms/Payroll-forms/payroll-dashboard";
+import ReceptionDashboardPage from "../../forms/Reception-forms/reception-dashboard";
 import PayrollDeductionEntry from "../../forms/Payroll-forms/payroll-deduction-entry.component";
 import PayrollSalaryCaculationMaster from "../../forms/Payroll-forms/payroll-salary-calculation-master";
 import PayrollReportPage from "../../forms/Payroll-forms/payroll-reports/payroll-report-page";
@@ -65,6 +66,7 @@ const RightFormPageContainer = () => {
 				<Route exact path="/sme/smecontlist" component={ContractorMasterList} />
 				<Route exact path="/sme/smepaydetails" component={ContractorPayment} />
 				<Route exact path="/sme" component={SMEDashboardPage} />
+				<Route exact path="/reception" component={ReceptionDashboardPage} />
 			</Switch>
 		</div>
 	);

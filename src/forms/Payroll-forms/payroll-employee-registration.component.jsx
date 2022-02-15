@@ -4,10 +4,8 @@ import FormInput from "../../component/form-input/form-input.component";
 import CustomButton from "../../component/custom-button/custom-button.component";
 import { firestore } from "../../firebase/firebase.utils";
 import ParollEmpRegService from "./payroll-emp-reg-service";
-
+import ImageBox from "../../component/image-box/image-box.component";
 import { storage } from "../../firebase/firebase.utils";
-
-import avatar from "../../assets/avatar.png";
 
 import { options } from "./payroll-dropdown.option";
 import Select from "react-select";
@@ -16,9 +14,7 @@ var todayDate = new Date();
 var finalDate = todayDate.toISOString().substr(0, 10);
 const initialState = {
 	Editid: "",
-	EmployeeFile: "",
-	EmployeeImagePreviewUrl: "",
-	EmployeeImgUrl: "",
+
 	EmployeeCode: "",
 	EmployeeName: "",
 	EmployeeGender: "",
@@ -43,20 +39,19 @@ const initialState = {
 	PayrollCompanyName: "VKBORL Hospital",
 	EmployerCompanyName: "xprt Hospital",
 	ESICCalculation: "",
-	EmployeeImageStatus: "Not Upload",
 	TabtoggleState: 1,
 };
 
 class PayrollEmpRegMaster extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log("Inside Constructor");
 		this.state = initialState;
 		this.unsubscribe = undefined;
 	}
 
 	componentDidMount() {
 		var getidArray = window.location.href.split("/");
+		/* var getidArray = "2132sds"; */
 		const getIDData = getidArray[getidArray.length - 1];
 		const dbRef = firestore.doc(
 			`payrollData/payrollEmpRegistration/payrollEmployee/${getIDData}`,
@@ -66,7 +61,7 @@ class PayrollEmpRegMaster extends React.Component {
 			.get()
 			.then((doc) => {
 				if (doc.exists) {
-					console.log("Document data:", doc.data());
+					/* console.log("Document data:", doc.data()); */
 					const newData = doc.data();
 					this.setState({
 						Editid: getIDData,
@@ -104,37 +99,6 @@ class PayrollEmpRegMaster extends React.Component {
 				console.log("Error getting document:", error);
 			});
 	}
-
-	handleImageUpload = (image) => {
-		if (image) {
-			const uploadTask = storage
-				.ref(`PayrollEmployeeImages/${image.name}`)
-				.put(image);
-
-			uploadTask.on(
-				"state_changes",
-				(snapshot) => {},
-				(error) => {
-					console.log(error);
-				},
-				() => {
-					storage
-						.ref("PayrollEmployeeImages")
-						.child(image.name)
-						.getDownloadURL()
-						.then((url) => {
-							console.log(url);
-							this.setState({
-								EmployeeImgUrl: url,
-								EmployeeImageStatus: "Upload Successfully",
-							});
-						});
-				},
-			);
-		} else {
-			alert("Please Select Image");
-		}
-	};
 
 	handleSubmit = async (event) => {
 		event.preventDefault();
@@ -188,32 +152,6 @@ class PayrollEmpRegMaster extends React.Component {
 		}
 	};
 
-	handleImage = (e) => {
-		e.preventDefault();
-
-		let EmployeeFile = e.target.files[0];
-
-		if (EmployeeFile !== undefined) {
-			let reader = new FileReader();
-			reader.onloadend = () => {
-				this.setState({
-					EmployeeFile: EmployeeFile,
-					EmployeeImagePreviewUrl: reader.result,
-				});
-			};
-
-			reader.readAsDataURL(EmployeeFile);
-		} else {
-			this.setState({
-				EmployeeFile: "",
-				EmployeeImagePreviewUrl: "",
-				EmployeeImgUrl: "",
-				EmployeeImageStatus: "Not Upload",
-			});
-			alert("Please select Image");
-		}
-	};
-
 	handleChange = (event) => {
 		const { name, value } = event.target;
 
@@ -222,8 +160,6 @@ class PayrollEmpRegMaster extends React.Component {
 
 	render() {
 		const {
-			EmployeeFile,
-			EmployeeImagePreviewUrl,
 			EmployeeCode,
 			EmployeeName,
 			EmployeeGender,
@@ -246,7 +182,6 @@ class PayrollEmpRegMaster extends React.Component {
 			EmployeePANNo,
 			EmployeeAadharNo,
 			ESICCalculation,
-			EmployeeImageStatus,
 			TabtoggleState,
 		} = this.state;
 
@@ -282,25 +217,7 @@ class PayrollEmpRegMaster extends React.Component {
 						>
 							<h3 className="tab-title">Basic Information </h3>
 							<div className="image-form-page">
-								<div className="image-container">
-									<div className="imgPreview">
-										{EmployeeImagePreviewUrl ? (
-											<img src={EmployeeImagePreviewUrl} alt="" />
-										) : (
-											<img src={avatar} alt="" />
-										)}
-									</div>
-									<div className="status">
-										<h4>{EmployeeImageStatus}</h4>
-									</div>
-									<input type="file" onChange={this.handleImage} />
-									<div
-										className="button-upload"
-										onClick={() => this.handleImageUpload(EmployeeFile)}
-									>
-										Upload
-									</div>
-								</div>
+								<ImageBox storageAddress="PayrollEmployeeImages" />
 								<div className="tab-container">
 									<FormInput
 										type="number"

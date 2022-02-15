@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { createStructuredSelector } from "reselect";
 import { activeHeaderButton } from "../../redux/menu/menu.action";
 import { selectActiveHeader } from "../../redux/menu/menu.selectors";
