@@ -1,25 +1,49 @@
 import { firestore } from "../../firebase/firebase.utils";
 
-const db = firestore
+const dbReg = firestore
 	.collection("receptionData")
 	.doc("receptionOpdRegistration")
 	.collection("opdPatient");
 
 class ReceptionOpdRegService {
 	getAll() {
-		return db;
+		return dbReg;
 	}
 
 	create(sData) {
-		return db.add(sData);
+		return dbReg.add(sData);
 	}
 
 	update(id, value) {
-		return db.doc(id).update(value);
+		return dbReg.doc(id).update(value);
 	}
 
 	delete(id) {
-		return db.doc(id).delete();
+		return dbReg.doc(id).delete();
+	}
+	getIdData() {}
+}
+
+const dbDocMaster = firestore
+	.collection("receptionData")
+	.doc("receptionDoctorMaster")
+	.collection("doctor");
+
+export class ReceptionDoctorMasterService {
+	getAll() {
+		return dbDocMaster;
+	}
+
+	create(sData) {
+		return dbDocMaster.add(sData);
+	}
+
+	update(id, value) {
+		return dbDocMaster.doc(id).update(value);
+	}
+
+	delete(id) {
+		return dbDocMaster.doc(id).delete();
 	}
 	getIdData() {}
 }

@@ -3,7 +3,9 @@ import "./footer.styles.scss";
 const Footer = () => {
 	return (
 		<div className="footer">
-			<h4>xprt computer solution copyright 2021</h4>
+			<a href="http://xprtcomputersolution.com">
+				xprt computer solution &copy; 2021
+			</a>
 		</div>
 	);
 };

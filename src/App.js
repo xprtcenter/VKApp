@@ -92,6 +92,16 @@ class App extends Component {
 							}
 						/>
 						<Route
+							path="/reception"
+							render={() =>
+								this.props.currentUser ? (
+									<ReceptionHomePage />
+								) : (
+									<Redirect to="/signin" />
+								)
+							}
+						/>
+						<Route
 							path="/checkout"
 							render={() =>
 								this.props.currentUser ? (
@@ -114,7 +124,6 @@ class App extends Component {
 						/>
 						<Route exact path="/xray" component={XrayImages} />
 						<Route exact path="/modulecreation" component={ModuleCreation} />
-						<Route exact path="/reception" component={ReceptionHomePage} />
 					</Switch>
 				</div>
 				<Footer />

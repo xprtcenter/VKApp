@@ -14,31 +14,20 @@ var todayDate = new Date();
 var finalDate = todayDate.toISOString().substr(0, 10);
 const initialState = {
 	Editid: "",
-	EmployeeCode: "",
-	EmployeeName: "",
-	EmployeeGender: "",
-	EmployeeDOB: "",
-	EmployeeAddress: "",
-	EmployeePAddress: "",
-	EmployeeContact: "",
-	EmployeeEmail: "",
-	EmployeeDepartment: "",
-	EmployeeStatusActive: "",
-	EmployeeDateofJoining: finalDate,
-	EmployeeDateofLeaving: "",
-	EmployeeBasicSalary: "",
-	EmployeeOnrollContractor: "",
-	EmployeeBankName: "",
-	EmployeeBankIFSCCode: "",
-	EmployeeAccountNo: "",
-	EmployeeUANNo: "",
-	EmployeeESICNo: "",
-	EmployeePANNo: "",
-	EmployeeAadharNo: "",
-	PayrollCompanyName: "VKBORL Hospital",
-	EmployerCompanyName: "xprt Hospital",
-	ESICCalculation: "",
+	DateofRegistration: finalDate,
+	PatientName: "",
+	PatientGender: "",
+	PatientDOB: "",
+	PatientAddress: "",
+	PatientPAddress: "",
+	PatientContact: "",
+	PatientEmail: "",
+	PatientDepartment: "",
+	PatientDoctor: "",
+	PatientDoctorSpecialisation: "",
+	PatientAadharNo: "",
 	TabtoggleState: 1,
+	userRole: "Admin",
 };
 
 class ReceptionOpdRegistration extends React.Component {
@@ -64,30 +53,20 @@ class ReceptionOpdRegistration extends React.Component {
 					const newData = doc.data();
 					this.setState({
 						Editid: getIDData,
-						EmployeeImgUrl: newData.EmployeeImgUrl,
-						EmployeeCode: newData.EmployeeCode,
-						EmployeeName: newData.EmployeeName,
-						EmployeeGender: newData.EmployeeGender,
-						EmployeeDOB: newData.EmployeeDOB,
-						EmployeeAddress: newData.EmployeeAddress,
-						EmployeePAddress: newData.EmployeePAddress,
-						EmployeeContact: newData.EmployeeContact,
-						EmployeeEmail: newData.EmployeeEmail,
-						EmployeeDepartment: newData.EmployeeDepartment,
-						EmployeeStatusActive: newData.EmployeeStatusActive,
-						EmployeeDateofJoining: newData.EmployeeDateofJoining,
-						EmployeeDateofLeaving: newData.EmployeeDateofLeaving,
-						EmployeeBasicSalary: newData.EmployeeBasicSalary,
-						EmployeeOnrollContractor: newData.EmployeeOnrollContractor,
-						EmployeeBankName: newData.EmployeeBankName,
-						EmployeeBankIFSCCode: newData.EmployeeBankIFSCCode,
-						EmployeeAccountNo: newData.EmployeeAccountNo,
-						EmployeeUANNo: newData.EmployeeUANNo,
-						EmployeeESICNo: newData.EmployeeESICNo,
-						EmployeePANNo: newData.EmployeePANNo,
-						EmployeeAadharNo: newData.EmployeeAadharNo,
+						PatientImgUrl: newData.PatientImgUrl,
+						DateofRegistration: newData.DateofRegistration,
+
+						PatientName: newData.PatientName,
+						PatientGender: newData.PatientGender,
+						PatientDOB: newData.PatientDOB,
+						PatientAddress: newData.PatientAddress,
+						PatientPAddress: newData.PatientPAddress,
+						PatientContact: newData.PatientContact,
+						PatientEmail: newData.PatientEmail,
+
+						PatientAadharNo: newData.PatientAadharNo,
 						PayrollCompanyName: newData.PayrollCompanyName,
-						EmployeeImagePreviewUrl: newData.EmployeeImgUrl,
+						PatientImagePreviewUrl: newData.PatientImgUrl,
 					});
 				} else {
 					// doc.data() will be undefined in this case
@@ -103,34 +82,21 @@ class ReceptionOpdRegistration extends React.Component {
 		event.preventDefault();
 		if (this.state.EmployeeImgUrl) {
 			let sData = {
-				EmployeeImgUrl: this.state.EmployeeImgUrl,
-				EmployeeCode: this.state.EmployeeCode,
-				EmployeeName: this.state.EmployeeName,
-				EmployeeGender: this.state.EmployeeGender,
-				EmployeeDOB: this.state.EmployeeDOB,
-				EmployeeAddress: this.state.EmployeeAddress,
-				EmployeePAddress: this.state.EmployeePAddress,
-				EmployeeContact: this.state.EmployeeContact,
-				EmployeeEmail: this.state.EmployeeEmail,
-				EmployeeDepartment: this.state.EmployeeDepartment,
-				EmployeeStatusActive: this.state.EmployeeStatusActive,
-				EmployeeDateofJoining: this.state.EmployeeDateofJoining,
-				EmployeeDateofLeaving: this.state.EmployeeDateofLeaving,
-				EmployeeBasicSalary: this.state.EmployeeBasicSalary,
-				EmployeeOnrollContractor: this.state.EmployeeOnrollContractor,
-				EmployeeBankName: this.state.EmployeeBankName,
-				EmployeeBankIFSCCode: this.state.EmployeeBankIFSCCode,
-				EmployeeAccountNo: this.state.EmployeeAccountNo,
-				EmployeeUANNo: this.state.EmployeeUANNo,
-				EmployeeESICNo: this.state.EmployeeESICNo,
-				EmployeePANNo: this.state.EmployeePANNo,
-				EmployeeAadharNo: this.state.EmployeeAadharNo,
-				PayrollCompanyName: this.state.PayrollCompanyName,
+				PatientImgUrl: this.state.PatientImgUrl,
+				DateofRegistration: this.state.DateofRegistration,
+				PatientName: this.state.PatientName,
+				PatientGender: this.state.PatientGender,
+				PatientDOB: this.state.PatientDOB,
+				PatientAddress: this.state.PatientAddress,
+				PatientPAddress: this.state.PatientPAddress,
+				PatientContact: this.state.PatientContact,
+				PatientEmail: this.state.PatientEmail,
+				PatientAadharNo: this.state.PatientAadharNo,
 			};
 			if (!this.state.Editid) {
 				ReceptionOpdRegService.create(sData)
 					.then(() => {
-						alert("Created new Employee successfully!");
+						alert("Created new Patient successfully!");
 						this.setState(initialState);
 					})
 					.catch((e) => {
@@ -139,7 +105,7 @@ class ReceptionOpdRegistration extends React.Component {
 			} else {
 				ReceptionOpdRegService.update(this.state.Editid, sData)
 					.then(() => {
-						alert("Employee Update successfully!");
+						alert("Patient Update successfully!");
 						this.setState(initialState);
 					})
 					.catch((e) => {
@@ -159,34 +125,22 @@ class ReceptionOpdRegistration extends React.Component {
 
 	render() {
 		const {
-			EmployeeCode,
-			EmployeeName,
-			EmployeeGender,
-			EmployeeDOB,
-			EmployeeAddress,
-			EmployeePAddress,
-			EmployeeContact,
-			EmployeeEmail,
-			EmployeeDepartment,
-			EmployeeStatusActive,
-			EmployeeDateofJoining,
-			EmployeeDateofLeaving,
-			EmployeeBasicSalary,
-			EmployeeOnrollContractor,
-			EmployeeBankName,
-			EmployeeBankIFSCCode,
-			EmployeeAccountNo,
-			EmployeeUANNo,
-			EmployeeESICNo,
-			EmployeePANNo,
-			EmployeeAadharNo,
-			ESICCalculation,
+			DateofRegistration,
+			PatientName,
+			PatientGender,
+			PatientDOB,
+			PatientAddress,
+			PatientPAddress,
+			PatientContact,
+			PatientEmail,
+			PatientAadharNo,
 			TabtoggleState,
+			userRole,
 		} = this.state;
 
 		return (
 			<form className="form-container" onSubmit={this.handleSubmit}>
-				<h2 className="section-title">Employee Registration form</h2>
+				<h2 className="section-title">Patient Registration form</h2>
 				<div className="base-form">
 					<div className="bloc-tabs">
 						<div
@@ -216,22 +170,24 @@ class ReceptionOpdRegistration extends React.Component {
 						>
 							<h3 className="tab-title">Basic Information </h3>
 							<div className="image-form-page">
-								<ImageBox storageAddress="PayrollEmployeeImages" />
+								<ImageBox storageAddress="PayrollPatientImages" />
 								<div className="tab-container">
 									<FormInput
-										type="number"
-										name="EmployeeCode"
-										value={EmployeeCode || ""}
+										type="date"
+										label="Date of Registration"
+										name="DateofRegistration"
+										value={DateofRegistration || ""}
 										onChange={this.handleChange}
-										label="Employee Code"
 										required
+										readonly={userRole === "Admin" ? "true" : false}
 									/>
+
 									<FormInput
 										type="text"
-										name="EmployeeName"
-										value={EmployeeName || ""}
+										name="PatientName"
+										value={PatientName || ""}
 										onChange={this.handleChange}
-										label="Employee Name"
+										label="Patient Name"
 										required
 									/>
 									<Select
@@ -239,51 +195,51 @@ class ReceptionOpdRegistration extends React.Component {
 										placeholder="Select Gender"
 										value={
 											options.Gender.find(
-												(obj) => obj.value === EmployeeGender,
+												(obj) => obj.value === PatientGender,
 											) || ""
 										} // set selected value
 										options={options.Gender} // set list of the data
 										onChange={(e) => {
-											this.setState({ EmployeeGender: e.value });
+											this.setState({ PatientGender: e.value });
 										}} // assign onChange function
 									/>
 
 									<FormInput
 										type="date"
 										label="Date of Birth"
-										name="EmployeeDOB"
-										value={EmployeeDOB || ""}
+										name="PatientDOB"
+										value={PatientDOB || ""}
 										onChange={this.handleChange}
 										required
 									/>
 									<FormInput
 										type="text"
-										name="EmployeeAddress"
-										value={EmployeeAddress || ""}
+										name="PatientAddress"
+										value={PatientAddress || ""}
 										onChange={this.handleChange}
-										label="Employee Address"
+										label="Patient Address"
 										required
 									/>
 									<FormInput
 										type="text"
-										name="EmployeePAddress"
-										value={EmployeePAddress || ""}
+										name="PatientPAddress"
+										value={PatientPAddress || ""}
 										onChange={this.handleChange}
 										label="Permanent Address"
 										required
 									/>
 									<FormInput
 										type="text"
-										name="EmployeeContact"
-										value={EmployeeContact || ""}
+										name="PatientContact"
+										value={PatientContact || ""}
 										onChange={this.handleChange}
-										label="Employee Contact"
+										label="Patient Contact"
 										required
 									/>
 									<FormInput
 										type="email"
-										name="EmployeeEmail"
-										value={EmployeeEmail || ""}
+										name="PatientEmail"
+										value={PatientEmail || ""}
 										onChange={this.handleChange}
 										label="Email Address"
 										required
@@ -298,93 +254,6 @@ class ReceptionOpdRegistration extends React.Component {
 							}
 						>
 							<h3 className="tab-title">Joining Information </h3>
-							<div className="tab-container">
-								<Select
-									className="form-dropdown"
-									placeholder="Select Department"
-									value={
-										options.Department.find(
-											(obj) => obj.value === EmployeeDepartment,
-										) || ""
-									} // set selected value
-									options={options.Department} // set list of the data
-									onChange={(e) => {
-										this.setState({ EmployeeDepartment: e.value });
-									}} // assign onChange function
-								/>
-								<Select
-									className="form-dropdown"
-									placeholder="Active or De-active"
-									value={
-										options.Active.find(
-											(obj) => obj.value === EmployeeStatusActive,
-										) || ""
-									} // set selected value
-									options={options.Active} // set list of the data
-									onChange={(e) => {
-										this.setState({ EmployeeStatusActive: e.value });
-									}} // assign onChange function
-								/>
-								<FormInput
-									type="date"
-									name="EmployeeDateofJoining"
-									value={EmployeeDateofJoining || ""}
-									onChange={this.handleChange}
-									label="Date of Joining"
-									required
-								/>
-								<FormInput
-									type="date"
-									name="EmployeeDateofLeaving"
-									value={EmployeeDateofLeaving || ""}
-									onChange={this.handleChange}
-									label="Date of Leaving"
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeESICNo"
-									value={EmployeeESICNo || ""}
-									onChange={this.handleChange}
-									label="ESIC No"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeUANNo"
-									value={EmployeeUANNo || ""}
-									onChange={this.handleChange}
-									label="UAN No"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeBasicSalary"
-									value={EmployeeBasicSalary || ""}
-									onChange={this.handleChange}
-									label="Basic Salary"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeOnrollContractor"
-									value={EmployeeOnrollContractor || ""}
-									onChange={this.handleChange}
-									label="Onroll or Contractor"
-									required
-								/>
-								<Select
-									className="form-dropdown"
-									placeholder="ESIC Calculation"
-									value={
-										options.ESIC.find((obj) => obj.value === ESICCalculation) ||
-										""
-									} // set selected value
-									options={options.ESIC} // set list of the data
-									onChange={(e) => {
-										this.setState({ ESICCalculation: e.value });
-									}} // assign onChange function
-								/>
-							</div>
 						</div>
 
 						<div
@@ -396,42 +265,10 @@ class ReceptionOpdRegistration extends React.Component {
 							<div className="tab-container">
 								<FormInput
 									type="text"
-									name="EmployeePANNo"
-									value={EmployeePANNo || ""}
-									onChange={this.handleChange}
-									label="PAN No"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeAadharNo"
-									value={EmployeeAadharNo || ""}
+									name="PatientAadharNo"
+									value={PatientAadharNo || ""}
 									onChange={this.handleChange}
 									label="Aadhar No"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeBankName"
-									value={EmployeeBankName || ""}
-									onChange={this.handleChange}
-									label="Bank Name"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeBankIFSCCode"
-									value={EmployeeBankIFSCCode || ""}
-									onChange={this.handleChange}
-									label="IFSC Code"
-									required
-								/>
-								<FormInput
-									type="text"
-									name="EmployeeAccountNo"
-									value={EmployeeAccountNo || ""}
-									onChange={this.handleChange}
-									label="Account No"
 									required
 								/>
 							</div>

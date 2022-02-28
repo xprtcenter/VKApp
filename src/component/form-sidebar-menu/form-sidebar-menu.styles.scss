@@ -5,9 +5,10 @@
 	border-radius: 0 15px 15px 0;
 	.side-menu-text-block {
 		.sidebar-menu {
-			z-index: 10;
+			z-index: 5;
 			cursor: pointer;
 			border-radius: 5px;
+
 			&:hover {
 				background-color: var(--primary-color);
 				color: var(--secondary-color);
@@ -23,6 +24,7 @@
 			.close {
 				display: none;
 			}
+
 			.form-side-list {
 				display: flex;
 				color: var(--primary-color-m);

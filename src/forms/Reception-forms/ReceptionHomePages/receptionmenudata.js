@@ -18,7 +18,7 @@ const receptiondata = {
 			id: 2,
 			iconname: BiGridVertical,
 			menuName: "Patient List",
-			menuUrl: "patientlist",
+			menuUrl: "opdlist",
 		},
 		{
 			id: 3,

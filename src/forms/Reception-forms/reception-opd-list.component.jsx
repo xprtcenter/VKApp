@@ -1,6 +1,6 @@
 import React from "react";
 
-import { OpdData } from "./Functions/getemployeedetails";
+import { OpdData } from "./Functions/getopddetails";
 import CustomTable from "../../component/table/custom-table-material.component";
 
 const OpdRegList = () => {

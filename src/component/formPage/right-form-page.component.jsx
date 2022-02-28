@@ -1,19 +1,25 @@
 import { Route, Switch } from "react-router-dom";
-
+/********************************************* Payroll Pages *****************************************************/
+import PayrollDashboardPage from "../../forms/Payroll-forms/payroll-dashboard";
 import PayrollEmpRegMaster from "../../forms/Payroll-forms/payroll-employee-registration.component";
 import PayrollMaster from "../../forms/Payroll-forms/payroll-master.component";
 import PayrollEmpList from "../../forms/Payroll-forms/payroll-emp-list.component";
-import PayrollDashboardPage from "../../forms/Payroll-forms/payroll-dashboard";
-import ReceptionDashboardPage from "../../forms/Reception-forms/reception-dashboard";
 import PayrollDeductionEntry from "../../forms/Payroll-forms/payroll-deduction-entry.component";
 import PayrollSalaryCaculationMaster from "../../forms/Payroll-forms/payroll-salary-calculation-master";
 import PayrollReportPage from "../../forms/Payroll-forms/payroll-reports/payroll-report-page";
-
+/********************************************* SME Pages *****************************************************/
 import SMEDashboardPage from "../../forms/sme-forms/sme-dashboard";
+import ContractorPayment from "../../forms/sme-forms/contractor-payment-details.component";
+import ContractorMasterList from "../../forms/sme-forms/contractor-master-list.component";
 import ContractorMaster from "../../forms/sme-forms/contractor-master.component";
 import ContractorEmployeeEntry from "../../forms/sme-forms/contractor-employee-entry.component";
-import ContractorMasterList from "../../forms/sme-forms/contractor-master-list.component";
-import ContractorPayment from "../../forms/sme-forms/contractor-payment-details.component";
+/********************************************* Reception Pages *****************************************************/
+import ReceptionDashboardPage from "../../forms/Reception-forms/reception-dashboard";
+import DoctorMaster from "../../forms/Reception-forms/doctor-master.component";
+import OpdRegList from "../../forms/Reception-forms/reception-opd-list.component";
+import ReceptionOpdRegistration from "../../forms/Reception-forms/reception-opd-registration.component";
+
+/********************************************* Admin Pages *****************************************************/
 
 const RightFormPageContainer = () => {
 	return (
@@ -67,6 +73,13 @@ const RightFormPageContainer = () => {
 				<Route exact path="/sme/smepaydetails" component={ContractorPayment} />
 				<Route exact path="/sme" component={SMEDashboardPage} />
 				<Route exact path="/reception" component={ReceptionDashboardPage} />
+				<Route path="/reception/doctormaster" component={DoctorMaster} />
+				<Route exact path="/reception/opdlist" component={OpdRegList} />
+				<Route
+					exact
+					path="/reception/patregentry"
+					component={ReceptionOpdRegistration}
+				/>
 			</Switch>
 		</div>
 	);
