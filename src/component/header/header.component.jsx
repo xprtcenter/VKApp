@@ -51,7 +51,7 @@ const Header = ({
 	return (
 		<div className="main-header">
 			<div className="header1">
-				<p>VIVEKANANDA KENDRA BORL HOSPITAL</p>
+				<p>DEMO HOSPITAL APP NAME</p>
 				<HeaderDateTime />
 			</div>
 			<div className="header">
